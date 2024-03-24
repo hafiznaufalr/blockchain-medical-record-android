@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Typography"/>
+
+    <style name="Typography.H1_regular">
+        <item name="fontFamily">@font/fregular</item>
+        <item name="android:textSize">48sp</item>
+        <item name="lineHeight">60dp</item>
+    </style>
+
+    <style name="Typography.H1_medium">
+        <item name="fontFamily">@font/fmedium</item>
+        <item name="android:textSize">48sp</item>
+        <item name="lineHeight">60dp</item>
+    </style>
+
+    <style name="Typography.H1_bold">
+        <item name="fontFamily">@font/fbold</item>
+        <item name="android:textSize">48sp</item>
+        <item name="lineHeight">60dp</item>
+    </style>
+
+    <style name="Typography.H2_regular">
+        <item name="fontFamily">@font/fregular</item>
+        <item name="android:textSize">40sp</item>
+        <item name="lineHeight">48dp</item>
+    </style>
+
+    <style name="Typography.H2_medium">
+        <item name="fontFamily">@font/fmedium</item>
+        <item name="android:textSize">40sp</item>
+        <item name="lineHeight">48dp</item>
+    </style>
+
+    <style name="Typography.H2_bold">
+        <item name="fontFamily">@font/fbold</item>
+        <item name="android:textSize">40sp</item>
+        <item name="lineHeight">48dp</item>
+    </style>
+
+    <style name="Typography.H3_regular">
+        <item name="fontFamily">@font/fregular</item>
+        <item name="android:textSize">32sp</item>
+        <item name="lineHeight">44dp</item>
+    </style>
+
+    <style name="Typography.H3_medium">
+        <item name="fontFamily">@font/fmedium</item>
+        <item name="android:textSize">32sp</item>
+        <item name="lineHeight">44dp</item>
+    </style>
+
+    <style name="Typography.H3_bold">
+        <item name="fontFamily">@font/fbold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="lineHeight">44dp</item>
+    </style>
+
+    <style name="Typography.H4_regular">
+        <item name="fontFamily">@font/fregular</item>
+        <item name="android:textSize">28sp</item>
+        <item name="lineHeight">36dp</item>
+    </style>
+
+    <style name="Typography.H4_medium">
+        <item name="fontFamily">@font/fmedium</item>
+        <item name="android:textSize">28sp</item>
+        <item name="lineHeight">36dp</item>
+    </style>
+
+    <style name="Typography.H4_bold">
+        <item name="fontFamily">@font/fbold</item>
+        <item name="android:textSize">28sp</item>
+        <item name="lineHeight">36dp</item>
+    </style>
+
+    <style name="Typography.H5_regular">
+        <item name="fontFamily">@font/fregular</item>
+        <item name="android:textSize">24sp</item>
+        <item name="lineHeight">32dp</item>
+    </style>
+
+    <style name="Typography.H5_medium">
+        <item name="fontFamily">@font/fmedium</item>
+        <item name="android:textSize">24sp</item>
+        <item name="lineHeight">32dp</item>
+    </style>
+
+    <style name="Typography.H5_bold">
+        <item name="fontFamily">@font/fbold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="lineHeight">32dp</item>
+    </style>
+
+    <style name="Typography.H6_regular">
+        <item name="fontFamily">@font/fregular</item>
+        <item name="android:textSize">20sp</item>
+        <item name="lineHeight">30dp</item>
+    </style>
+
+    <style name="Typography.H6_medium">
+        <item name="fontFamily">@font/fmedium</item>
+        <item name="android:textSize">20sp</item>
+        <item name="lineHeight">30dp</item>
+    </style>
+
+    <style name="Typography.H6_bold">
+        <item name="fontFamily">@font/fbold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="lineHeight">30dp</item>
+    </style>
+
+    <style name="Typography.BodyLarge_regular">
+        <item name="fontFamily">@font/fregular</item>
+        <item name="android:textSize">18sp</item>
+        <item name="lineHeight">28dp</item>
+    </style>
+
+    <style name="Typography.BodyLarge_medium">
+        <item name="fontFamily">@font/fmedium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="lineHeight">28dp</item>
+    </style>
+
+    <style name="Typography.BodyLarge_bold">
+        <item name="fontFamily">@font/fbold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="lineHeight">28dp</item>
+    </style>
+
+    <style name="Typography.BodyMedium_regular">
+        <item name="fontFamily">@font/fregular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">24dp</item>
+    </style>
+
+    <style name="Typography.BodyMedium_medium">
+        <item name="fontFamily">@font/fmedium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">24dp</item>
+    </style>
+
+    <style name="Typography.BodyMedium_bold">
+        <item name="fontFamily">@font/fbold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">24dp</item>
+    </style>
+
+    <style name="Typography.BodySmall_regular">
+        <item name="fontFamily">@font/fregular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">20dp</item>
+    </style>
+
+    <style name="Typography.BodySmall_medium">
+        <item name="fontFamily">@font/fmedium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">20dp</item>
+    </style>
+
+    <style name="Typography.BodySmall_bold">
+        <item name="fontFamily">@font/fbold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">20dp</item>
+    </style>
+
+    <style name="Typography.Caption_regular">
+        <item name="fontFamily">@font/fregular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">18dp</item>
+    </style>
+
+    <style name="Typography.Caption_medium">
+        <item name="fontFamily">@font/fmedium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">18dp</item>
+    </style>
+
+    <style name="Typography.Caption_bold">
+        <item name="fontFamily">@font/fbold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">18dp</item>
+    </style>
+
+    <style name="Typography.Overline_regular">
+        <item name="fontFamily">@font/fregular</item>
+        <item name="android:textSize">10sp</item>
+        <item name="lineHeight">16dp</item>
+    </style>
+
+    <style name="Typography.Overline_medium">
+        <item name="fontFamily">@font/fmedium</item>
+        <item name="android:textSize">10sp</item>
+        <item name="lineHeight">16dp</item>
+    </style>
+
+    <style name="Typography.Overline_bold">
+        <item name="fontFamily">@font/fbold</item>
+        <item name="android:textSize">10sp</item>
+        <item name="lineHeight">16dp</item>
+    </style>
+
+    <style name="Typography.SmallOverline_regular">
+        <item name="fontFamily">@font/fregular</item>
+        <item name="android:textSize">8sp</item>
+        <item name="lineHeight">14dp</item>
+    </style>
+
+    <style name="Typography.SmallOverline_medium">
+        <item name="fontFamily">@font/fmedium</item>
+        <item name="android:textSize">8sp</item>
+        <item name="lineHeight">14dp</item>
+    </style>
+
+    <style name="Typography.SmallOverline_bold">
+        <item name="fontFamily">@font/fbold</item>
+        <item name="android:textSize">8sp</item>
+        <item name="lineHeight">14dp</item>
+    </style>
+
+</resources>
