@@ -1,12 +1,12 @@
-package my.id.medicalrecordblockchain.ui.sign_up
+package my.id.medicalrecordblockchain.ui.patient
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import my.id.medicalrecordblockchain.R
 
-class SignUpActivity : AppCompatActivity() {
+class HomePatientActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        setContentView(R.layout.activity_home_patient)
     }
 }

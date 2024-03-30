@@ -13,13 +13,16 @@
         android:theme="@style/Theme.Medicalrecordblockchainandroid"
         tools:targetApi="31">
         <activity
-            android:name=".ui.sign_up.SignUpActivity"
+            android:name=".ui.doctor.HomeDoctorActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.sign_in.SignInActivity"
+            android:name=".ui.patient.sign_up.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name=".ui.global.sign_in.SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.patient.HomeActivity"
             android:exported="false" />
     </application>
 

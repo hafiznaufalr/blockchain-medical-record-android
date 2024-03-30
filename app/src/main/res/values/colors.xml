@@ -50,4 +50,5 @@
     <color name="destructive_500">#752522</color>
 
     <color name="transparent">#00000000</color>
+    <color name="screen_color">#F2F2F2</color>
 </resources>

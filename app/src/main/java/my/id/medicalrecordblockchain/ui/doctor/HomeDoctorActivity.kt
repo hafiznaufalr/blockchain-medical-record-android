@@ -1,12 +1,12 @@
-package my.id.medicalrecordblockchain.ui.home
+package my.id.medicalrecordblockchain.ui.doctor
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import my.id.medicalrecordblockchain.R
 
-class HomeActivity : AppCompatActivity() {
+class HomeDoctorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_home_doctor)
     }
 }
