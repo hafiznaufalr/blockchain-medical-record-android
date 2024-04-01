@@ -9,4 +9,8 @@
         <item name="android:statusBarColor">@color/screen_color</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize16dp" parent="">
+        <item name="cornerSize">16dp</item>
+    </style>
 </resources>

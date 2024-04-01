@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Medicalrecordblockchainandroid"
         tools:targetApi="31">
         <activity
+            android:name=".ui.patient.list_doctor.ListDoctorActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.global.sign_in.SignInActivity"
             android:exported="true">
             <intent-filter>

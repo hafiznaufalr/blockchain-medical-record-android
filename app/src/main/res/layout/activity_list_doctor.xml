@@ -4,19 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/screen_color">
+    android:background="@color/screen_color"
+    tools:context=".ui.patient.list_doctor.ListDoctorActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_margin="20dp"
-        android:fontFamily="@font/fsemibold"
-        android:text="MEDREC"
-        android:textColor="@color/black"
-        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_sub_title"
@@ -25,14 +23,14 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/fsemibold"
-        android:text="Pilih Layanan"
+        android:text="Dokter Tersedia"
         android:textColor="@color/black"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+        app:layout_constraintTop_toBottomOf="@id/iv_back" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_service"
+        android:id="@+id/rv_doctor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
@@ -41,6 +39,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_sub_title"
-        tools:listitem="@layout/item_service" />
+        tools:listitem="@layout/item_doctor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
