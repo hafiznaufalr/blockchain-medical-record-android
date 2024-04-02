@@ -1,4 +1,4 @@
-package my.id.medicalrecordblockchain.ui.patient.book_appointment
+package my.id.medicalrecordblockchain.ui.patient.appointment.book_appointment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
