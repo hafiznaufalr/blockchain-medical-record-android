@@ -1,12 +1,12 @@
-package my.id.medicalrecordblockchain.ui.patient.appointment.detail_appointment
+package my.id.medicalrecordblockchain.ui.global.medical_record
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import my.id.medicalrecordblockchain.R
 
-class DetailAppointmentActivity : AppCompatActivity() {
+class DetailMedicalRecordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_appointment)
+        setContentView(R.layout.activity_detail_medical_record)
     }
 }
