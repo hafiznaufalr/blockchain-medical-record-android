@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Medicalrecordblockchainandroid"
         tools:targetApi="31">
         <activity
+            android:name=".ui.doctor.medical_record.MedicalRecordHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.patient.personal_data.info.PersonalDataInfoActivity"
             android:exported="false" />
         <activity
