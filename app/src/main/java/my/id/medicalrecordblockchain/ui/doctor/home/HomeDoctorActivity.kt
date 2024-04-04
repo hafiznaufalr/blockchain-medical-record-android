@@ -1,4 +1,4 @@
-package my.id.medicalrecordblockchain.ui.doctor
+package my.id.medicalrecordblockchain.ui.doctor.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

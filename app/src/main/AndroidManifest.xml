@@ -45,7 +45,7 @@
             android:name=".ui.patient.personal_data.form.PersonalDataFormActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.doctor.HomeDoctorActivity"
+            android:name=".ui.doctor.home.HomeDoctorActivity"
             android:exported="false" />
         <activity
             android:name=".ui.patient.sign_up.SignUpActivity"

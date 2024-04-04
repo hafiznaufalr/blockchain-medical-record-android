@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/fregular"
-            android:text="BK-202408071206"
+            android:text="-"
             android:textColor="#828282"
             android:textSize="14sp" />
 
@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/fregular"
-            android:text="28 Maret 2024"
+            android:text="-"
             android:textColor="#828282"
             android:textSize="14sp" />
 
@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/fregular"
-            android:text="28 Maret 2024"
+            android:text="-"
             android:textColor="#828282"
             android:textSize="14sp" />
 
@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/fregular"
-            android:text="28 Maret 2024"
+            android:text="-"
             android:textColor="#828282"
             android:textSize="14sp" />
 
@@ -125,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/fregular"
-            android:text="28 Maret 2024"
+            android:text="-"
             android:textColor="#828282"
             android:textSize="14sp" />
 
@@ -143,7 +143,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/fregular"
-            android:text="28 Maret 2024"
+            android:text="-"
             android:textColor="#828282"
             android:textSize="14sp" />
 
@@ -161,7 +161,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/fregular"
-            android:text="28 Maret 2024"
+            android:text="-"
             android:textColor="#828282"
             android:textSize="14sp" />
 

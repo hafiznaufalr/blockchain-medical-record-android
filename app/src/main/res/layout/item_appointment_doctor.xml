@@ -20,7 +20,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/fsemibold"
-            android:text="Dr. Yusuf Banana"
+            android:text="Lisa Agusta"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
