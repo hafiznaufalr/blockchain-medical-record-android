@@ -1,12 +1,14 @@
 package my.id.medicalrecordblockchain.ui.doctor
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import my.id.medicalrecordblockchain.R
+import androidx.appcompat.app.AppCompatActivity
+import my.id.medicalrecordblockchain.databinding.ActivityHomeDoctorBinding
 
 class HomeDoctorActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityHomeDoctorBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home_doctor)
+        binding = ActivityHomeDoctorBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }
