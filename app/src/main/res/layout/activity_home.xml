@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/screen_color"
-    tools:context=".ui.patient.HomePatientActivity">
+    tools:context=".ui.global.home.HomeActivity">
 
     <FrameLayout
         android:id="@+id/fl_container"
