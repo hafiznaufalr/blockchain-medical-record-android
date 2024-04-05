@@ -16,18 +16,38 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
+        flavorDimensions "full"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            debuggable true
+        }
     }
+
+    flavorDimensions "full"
+    productFlavors{
+        patient {
+            applicationIdSuffix  ".patient"
+            buildConfigField "String", "BASE_URL", "\"https://\""
+        }
+
+        doctor {
+            applicationIdSuffix  ".doctor"
+            buildConfigField "String", "BASE_URL", "\"https://\""
+        }
+    }
+
     buildFeatures {
         viewBinding true
+        buildConfig = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
