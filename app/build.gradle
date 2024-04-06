@@ -84,11 +84,11 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.5.1"
     implementation "androidx.fragment:fragment-ktx:1.5.2"
 
-    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+    debugImplementation "com.github.chuckerteam.chucker:library:4.0.0"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
 
-    debugImplementation 'com.willowtreeapps.hyperion:hyperion-core:0.9.34'
-    debugImplementation 'com.willowtreeapps.hyperion:hyperion-crash:0.9.34'
+    debugImplementation 'com.willowtreeapps.hyperion:hyperion-core:0.9.38'
+    debugImplementation 'com.willowtreeapps.hyperion:hyperion-crash:0.9.38'
 
 
     releaseImplementation 'com.willowtreeapps.hyperion:hyperion-core-no-op:0.9.34'

@@ -51,7 +51,7 @@
             android:name=".ui.patient.personal_data.form.PersonalDataFormActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.doctor.home.HomeDoctorActivity"
+            android:name=".ui.global.home.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".ui.patient.sign_up.SignUpActivity"

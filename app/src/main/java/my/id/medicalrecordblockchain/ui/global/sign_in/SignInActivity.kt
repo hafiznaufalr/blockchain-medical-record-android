@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import my.id.medicalrecordblockchain.databinding.ActivitySignInBinding
+import my.id.medicalrecordblockchain.ui.global.home.HomeActivity
 import my.id.medicalrecordblockchain.ui.patient.sign_up.SignUpActivity
 import my.id.medicalrecordblockchain.utils.decideActionByFlavor
 
@@ -31,6 +32,10 @@ class SignInActivity : AppCompatActivity() {
     private fun initListener() {
         binding.tvSignUp.setOnClickListener {
             SignUpActivity.launch(this)
+        }
+
+        binding.btnSignIn.setOnClickListener {
+            HomeActivity.launch(this)
         }
     }
 }

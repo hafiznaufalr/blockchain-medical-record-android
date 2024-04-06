@@ -1,8 +1,8 @@
 package my.id.medicalrecordblockchain.data
 
-import com.chuckerteam.chucker.BuildConfig
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import my.id.medicalrecordblockchain.App
+import my.id.medicalrecordblockchain.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
