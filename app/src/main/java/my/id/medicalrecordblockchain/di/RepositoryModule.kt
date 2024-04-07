@@ -4,8 +4,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import my.id.medicalrecordblockchain.data.repository.UserRepository
-import my.id.medicalrecordblockchain.data.repository.UserRepositoryImpl
+import my.id.medicalrecordblockchain.data.repository.patient.PatientRepository
+import my.id.medicalrecordblockchain.data.repository.patient.PatientRepositoryImpl
+import my.id.medicalrecordblockchain.data.repository.user.UserRepository
+import my.id.medicalrecordblockchain.data.repository.user.UserRepositoryImpl
 import javax.inject.Singleton
 
 @Module
@@ -15,4 +17,9 @@ class RepositoryModule {
     @Singleton
     fun provideUserRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository =
         userRepositoryImpl
+
+    @Provides
+    @Singleton
+    fun providePatientRepository(patientRepositoryImpl: PatientRepositoryImpl): PatientRepository =
+        patientRepositoryImpl
 }

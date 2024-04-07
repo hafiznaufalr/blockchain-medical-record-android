@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.R
 import my.id.medicalrecordblockchain.databinding.ActivityHomeBinding
 import my.id.medicalrecordblockchain.ui.doctor.appointment.AppointmentDoctorFragment
@@ -14,6 +15,7 @@ import my.id.medicalrecordblockchain.ui.patient.appointment.AppointmentPatientFr
 import my.id.medicalrecordblockchain.ui.patient.home.HomePatientFragment
 import my.id.medicalrecordblockchain.utils.decideActionByFlavor
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private val homePatientFragment by lazy { HomePatientFragment() }

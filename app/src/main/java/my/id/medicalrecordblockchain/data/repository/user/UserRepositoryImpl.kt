@@ -1,4 +1,4 @@
-package my.id.medicalrecordblockchain.data.repository
+package my.id.medicalrecordblockchain.data.repository.user
 
 import my.id.medicalrecordblockchain.data.APIService
 import my.id.medicalrecordblockchain.data.requests.SignInRequest

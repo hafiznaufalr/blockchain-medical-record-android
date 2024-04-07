@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import my.id.medicalrecordblockchain.data.repository.UserRepository
+import my.id.medicalrecordblockchain.data.repository.user.UserRepository
 import my.id.medicalrecordblockchain.data.requests.SignUpRequest
 import my.id.medicalrecordblockchain.data.response.SignInResponse
 import my.id.medicalrecordblockchain.utils.ResultData
@@ -95,11 +95,7 @@ class SignUpViewModel @Inject constructor(
     private fun postSignUp(signUpRequest: SignUpRequest) {
         _postSignUp.value = ResultData.Loading
         viewModelScope.launch {
-            val data = userRepository.postSignUp(signUpRequest).also {
-                if (it is ResultData.Success) {
-                }
-            }
-            _postSignUp.postValue(data)
+            _postSignUp.postValue(userRepository.postSignUp(signUpRequest))
         }
     }
 

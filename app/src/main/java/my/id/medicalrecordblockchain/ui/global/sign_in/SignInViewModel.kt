@@ -8,11 +8,10 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import my.id.medicalrecordblockchain.data.Preferences
-import my.id.medicalrecordblockchain.data.repository.UserRepository
+import my.id.medicalrecordblockchain.data.repository.user.UserRepository
 import my.id.medicalrecordblockchain.data.requests.SignInRequest
 import my.id.medicalrecordblockchain.data.response.SignInResponse
 import my.id.medicalrecordblockchain.utils.ResultData
-import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel

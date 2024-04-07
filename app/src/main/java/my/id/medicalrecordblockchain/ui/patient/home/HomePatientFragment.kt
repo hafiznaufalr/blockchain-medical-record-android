@@ -1,15 +1,33 @@
 package my.id.medicalrecordblockchain.ui.patient.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.databinding.FragmentHomePatientBinding
+import my.id.medicalrecordblockchain.utils.LoadingDialog
+import my.id.medicalrecordblockchain.utils.ResultData
+import my.id.medicalrecordblockchain.utils.SnackBarType
+import my.id.medicalrecordblockchain.utils.showSnackBar
 
-class HomePatientFragment: Fragment() {
+@AndroidEntryPoint
+class HomePatientFragment : Fragment() {
     private var _binding: FragmentHomePatientBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: HomePatientViewModel by viewModels()
+    private val loadingDialog by lazy { LoadingDialog(requireContext()) }
+    private val servicesAdapter by lazy {
+        HomePatientServicesAdapter { data ->
+            showSnackBar(
+                message = data.name.orEmpty(),
+                snackBarType = SnackBarType.SUCCESS
+            )
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,14 +41,39 @@ class HomePatientFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+        initData()
         initListener()
+        observer()
     }
 
     private fun init() {
+        binding.rvService.adapter = servicesAdapter
+    }
 
+    private fun initData() {
+        viewModel.getServices()
     }
 
     private fun initListener() {
 
+    }
+
+    private fun observer() {
+        viewModel.services.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is ResultData.Loading -> {
+                    loadingDialog.show()
+                }
+
+                is ResultData.Success -> {
+                    loadingDialog.dismiss()
+                    servicesAdapter.setData(state.data.data)
+                }
+
+                is ResultData.Failure -> {
+                    loadingDialog.dismiss()
+                }
+            }
+        }
     }
 }
