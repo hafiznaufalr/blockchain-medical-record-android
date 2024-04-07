@@ -10,7 +10,6 @@ import my.id.medicalrecordblockchain.databinding.ActivityHomeBinding
 import my.id.medicalrecordblockchain.ui.doctor.appointment.AppointmentDoctorFragment
 import my.id.medicalrecordblockchain.ui.doctor.home.HomeDoctorFragment
 import my.id.medicalrecordblockchain.ui.global.account.AccountFragment
-import my.id.medicalrecordblockchain.ui.global.sign_in.SignInViewModel
 import my.id.medicalrecordblockchain.ui.patient.appointment.AppointmentPatientFragment
 import my.id.medicalrecordblockchain.ui.patient.home.HomePatientFragment
 import my.id.medicalrecordblockchain.utils.decideActionByFlavor

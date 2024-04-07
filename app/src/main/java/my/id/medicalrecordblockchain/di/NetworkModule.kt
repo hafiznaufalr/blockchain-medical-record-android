@@ -1,16 +1,37 @@
-package my.id.medicalrecordblockchain.data
+package my.id.medicalrecordblockchain.di
 
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.google.gson.Gson
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import my.id.medicalrecordblockchain.App
 import my.id.medicalrecordblockchain.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
-object NetworkService {
+@Module
+@InstallIn(SingletonComponent::class)
+object NetworkModule {
+
+    @Provides
+    @Singleton
+    fun provideGson(): Gson = Gson()
+
+    @Provides
+    fun provideRetrofit(
+        gson: Gson
+    ): Retrofit.Builder {
+        return Retrofit.Builder()
+            .client(getInterceptor())
+            .addConverterFactory(GsonConverterFactory.create(gson))
+    }
+
     private fun getInterceptor(): OkHttpClient {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         if (BuildConfig.DEBUG) {
@@ -28,15 +49,5 @@ object NetworkService {
             .writeTimeout(45, TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)
             .build()
-    }
-
-    fun coreService(): APIService {
-        val retrofit = Retrofit.Builder()
-            .client(getInterceptor())
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https")
-            .build()
-        return retrofit.create(APIService::class.java)
     }
 }

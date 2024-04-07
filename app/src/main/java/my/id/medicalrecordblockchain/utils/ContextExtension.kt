@@ -64,3 +64,11 @@ fun decideActionByFlavor(
     }
 
 }
+
+fun decideFlavor(): String {
+    return if (BuildConfig.FLAVOR.equals("patient")) {
+        "PATIENT"
+    } else {
+        "DOCTOR"
+    }
+}
