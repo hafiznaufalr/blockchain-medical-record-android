@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.data.requests.SignInRequest
 import my.id.medicalrecordblockchain.databinding.ActivitySignInBinding
+import my.id.medicalrecordblockchain.ui.global.home.HomeActivity
 import my.id.medicalrecordblockchain.ui.patient.sign_up.SignUpActivity
 import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
@@ -25,6 +26,7 @@ class SignInActivity : AppCompatActivity() {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
+        initData()
         initListener()
         observer()
     }
@@ -38,6 +40,10 @@ class SignInActivity : AppCompatActivity() {
                 binding.tvSignUp.isVisible = false
             }
         )
+    }
+
+    private fun initData() {
+        signInViewModel.isLoggedIn()
     }
 
     private fun initListener() {
@@ -57,6 +63,13 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun observer() {
+        signInViewModel.isLoggedIn.observe(this) { isLoggedIn ->
+            if (isLoggedIn) {
+                HomeActivity.launch(this)
+                finishAffinity()
+            }
+        }
+
         signInViewModel.signInValidator.observe(this) { msg ->
             showSnackBar(
                 message = msg,
@@ -72,8 +85,12 @@ class SignInActivity : AppCompatActivity() {
 
                 is ResultData.Success -> {
                     loadingDialog.dismiss()
+
+                    HomeActivity.launch(this)
+                    finishAffinity()
+
                     showSnackBar(
-                        state.data.data?.token.orEmpty(),
+                        "Login Sukses",
                         snackBarType = SnackBarType.SUCCESS
                     )
                 }
