@@ -79,7 +79,7 @@
             android:background="@drawable/bg_edit_text_inactive"
             android:fontFamily="@font/fregular"
             android:hint="Masukkan nomor telepon"
-            android:inputType="textPassword"
+            android:inputType="phone"
             android:padding="8dp"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -169,7 +169,7 @@
             android:background="@drawable/bg_edit_text_inactive"
             android:fontFamily="@font/fregular"
             android:hint="Masukkan alamat"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:padding="8dp"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -199,7 +199,7 @@
             android:background="@drawable/bg_edit_text_inactive"
             android:fontFamily="@font/fregular"
             android:hint="Masukkan NIK"
-            android:inputType="textEmailAddress"
+            android:inputType="number"
             android:padding="8dp"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -215,6 +215,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"

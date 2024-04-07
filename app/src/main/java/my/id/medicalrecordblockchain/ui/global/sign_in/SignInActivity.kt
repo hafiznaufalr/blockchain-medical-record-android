@@ -1,6 +1,10 @@
 package my.id.medicalrecordblockchain.ui.global.sign_in
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -85,14 +89,15 @@ class SignInActivity : AppCompatActivity() {
 
                 is ResultData.Success -> {
                     loadingDialog.dismiss()
-
-                    HomeActivity.launch(this)
-                    finishAffinity()
-
                     showSnackBar(
                         "Login Sukses",
                         snackBarType = SnackBarType.SUCCESS
                     )
+
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        HomeActivity.launch(this)
+                        finishAffinity()
+                    }, 1000)
                 }
 
                 is ResultData.Failure -> {
@@ -103,6 +108,17 @@ class SignInActivity : AppCompatActivity() {
                     )
                 }
             }
+        }
+    }
+
+    companion object {
+        fun launch(context: Context) {
+            context.startActivity(
+                Intent(
+                    context,
+                    SignInActivity::class.java
+                )
+            )
         }
     }
 }

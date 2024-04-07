@@ -1,5 +1,6 @@
 package my.id.medicalrecordblockchain.utils
 
+import org.json.JSONObject
 import retrofit2.Response
 import java.io.IOException
 import java.net.UnknownHostException
@@ -15,13 +16,20 @@ object NetworkHandler {
                     200, 201 -> {
                         ResultData.Success(response.body()!!)
                     }
-                    500 -> ResultData.Failure("Server Error")
                     else -> {
-                        ResultData.Failure("Server Error: ${response.message()}")
+                        var msg = ""
+                        response.errorBody()?.string()?.let { err ->
+                            msg = JSONObject(err).getString("message")
+                        }
+                        ResultData.Failure(msg)
                     }
                 }
             } else {
-                ResultData.Failure("Unsuccessful response: ${response.code()}")
+                var msg = ""
+                response.errorBody()?.string()?.let { err ->
+                    msg = JSONObject(err).getString("message")
+                }
+                ResultData.Failure(msg)
             }
         } catch (e: IOException) {
             ResultData.Failure(e.localizedMessage)
