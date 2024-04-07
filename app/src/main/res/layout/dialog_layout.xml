@@ -6,11 +6,11 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp">
 
-    <ProgressBar
+    <com.google.android.material.progressindicator.CircularProgressIndicator
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:padding="16dp"
         android:indeterminate="true"
-        />
+        android:padding="16dp"
+        app:indicatorColor="@color/black" />
 
 </androidx.cardview.widget.CardView>

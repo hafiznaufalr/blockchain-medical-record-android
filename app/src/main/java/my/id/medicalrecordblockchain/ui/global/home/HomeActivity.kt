@@ -2,17 +2,15 @@ package my.id.medicalrecordblockchain.ui.global.home
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.get
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import my.id.medicalrecordblockchain.R
 import my.id.medicalrecordblockchain.databinding.ActivityHomeBinding
 import my.id.medicalrecordblockchain.ui.doctor.appointment.AppointmentDoctorFragment
 import my.id.medicalrecordblockchain.ui.doctor.home.HomeDoctorFragment
 import my.id.medicalrecordblockchain.ui.global.account.AccountFragment
+import my.id.medicalrecordblockchain.ui.global.sign_in.SignInViewModel
 import my.id.medicalrecordblockchain.ui.patient.appointment.AppointmentPatientFragment
 import my.id.medicalrecordblockchain.ui.patient.home.HomePatientFragment
 import my.id.medicalrecordblockchain.utils.decideActionByFlavor
@@ -38,16 +36,10 @@ class HomeActivity : AppCompatActivity() {
     private fun init() {
         decideActionByFlavor(
             patientAction = {
-                fragmentManager
-                    .beginTransaction()
-                    .replace(R.id.fl_container, homePatientFragment)
-                    .commit()
+                renderFragment(homePatientFragment)
             },
             doctorAction = {
-                fragmentManager
-                    .beginTransaction()
-                    .replace(R.id.fl_container, homeDoctorFragment)
-                    .commit()
+                renderFragment(homeDoctorFragment)
             }
         )
     }
@@ -58,16 +50,10 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_home -> {
                     decideActionByFlavor(
                         patientAction = {
-                            fragmentManager
-                                .beginTransaction()
-                                .replace(R.id.fl_container, homePatientFragment)
-                                .commit()
+                            renderFragment(homePatientFragment)
                         },
                         doctorAction = {
-                            fragmentManager
-                                .beginTransaction()
-                                .replace(R.id.fl_container, homeDoctorFragment)
-                                .commit()
+                            renderFragment(homeDoctorFragment)
                         }
                     )
                     return@setOnNavigationItemSelectedListener true
@@ -76,31 +62,29 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_appointments -> {
                     decideActionByFlavor(
                         patientAction = {
-                            fragmentManager
-                                .beginTransaction()
-                                .replace(R.id.fl_container, appointmentPatientFragment)
-                                .commit()
+                            renderFragment(appointmentPatientFragment)
                         },
                         doctorAction = {
-                            fragmentManager
-                                .beginTransaction()
-                                .replace(R.id.fl_container, appointmentDoctorFragment)
-                                .commit()
+                            renderFragment(appointmentDoctorFragment)
                         }
                     )
                     return@setOnNavigationItemSelectedListener true
                 }
 
                 R.id.nav_account -> {
-                    fragmentManager
-                        .beginTransaction()
-                        .replace(R.id.fl_container, accountFragment)
-                        .commit()
+                    renderFragment(accountFragment)
                     return@setOnNavigationItemSelectedListener true
                 }
             }
             return@setOnNavigationItemSelectedListener false
         }
+    }
+
+    private fun renderFragment(fragment: Fragment) {
+        fragmentManager
+            .beginTransaction()
+            .replace(R.id.fl_container, fragment)
+            .commit()
     }
 
     companion object {
