@@ -11,6 +11,8 @@ import my.id.medicalrecordblockchain.data.response.DoctorData
 import my.id.medicalrecordblockchain.databinding.ActivityDetailDoctorBinding
 import my.id.medicalrecordblockchain.ui.patient.appointment.book_appointment.BookAppointmentActivity
 import my.id.medicalrecordblockchain.utils.ItemHorizontalMarginDecoration
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class DetailDoctorActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailDoctorBinding
@@ -67,19 +69,27 @@ class DetailDoctorActivity : AppCompatActivity() {
     }
 
     private fun initListener() {
-        request = BookAppointmentRequest(
-            doctorId = doctorData?.id,
-            healthServiceId = doctorData?.healthServiceId,
-            scheduleDate = "",
-            scheduleTime = ""
-        )
-
         binding.btnNext.setOnClickListener {
+            request = BookAppointmentRequest(
+                doctorId = doctorData?.id,
+                healthServiceId = doctorData?.healthServiceId,
+                scheduleDate = getDateNow(),
+                scheduleTime = pickedTime
+            )
             BookAppointmentActivity.launch(
                 context = this,
                 request = request
             )
         }
+
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun getDateNow(): String {
+        val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return formatter.format(System.currentTimeMillis())
     }
 
     private fun initData() {
@@ -101,10 +111,12 @@ class DetailDoctorActivity : AppCompatActivity() {
             dayAdapter.setData(
                 data = times.keys.toList()
             )
+            pickedDay = times.keys.toList().first()
 
             timeAdapter.setData(
                 data = times["Senin"].orEmpty()
             )
+            pickedTime = times["Senin"]?.first().orEmpty()
         }
     }
 

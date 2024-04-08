@@ -1,7 +1,9 @@
 package my.id.medicalrecordblockchain.data
 
+import my.id.medicalrecordblockchain.data.requests.BookAppointmentRequest
 import my.id.medicalrecordblockchain.data.requests.SignInRequest
 import my.id.medicalrecordblockchain.data.requests.SignUpRequest
+import my.id.medicalrecordblockchain.data.response.BasicResponse
 import my.id.medicalrecordblockchain.data.response.ListDoctorResponse
 import my.id.medicalrecordblockchain.data.response.ServicesResponse
 import my.id.medicalrecordblockchain.data.response.SignInResponse
@@ -33,4 +35,10 @@ interface APIService {
         @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
         @Path("serviceId") serviceId: Int
     ): Response<ListDoctorResponse>
+
+    @POST("/v1/appointments")
+    suspend fun bookingAppointment(
+        @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
+        @Body bookAppointmentRequest: BookAppointmentRequest
+    ): Response<BasicResponse>
 }
