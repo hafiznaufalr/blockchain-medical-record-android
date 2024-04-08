@@ -8,10 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.data.response.ServicesData
 import my.id.medicalrecordblockchain.databinding.ActivityListDoctorBinding
+import my.id.medicalrecordblockchain.ui.patient.detail_doctor.DetailDoctorActivity
 import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
-import my.id.medicalrecordblockchain.utils.SnackBarType
-import my.id.medicalrecordblockchain.utils.showSnackBar
 
 @AndroidEntryPoint
 class ListDoctorActivity : AppCompatActivity() {
@@ -20,9 +19,9 @@ class ListDoctorActivity : AppCompatActivity() {
     private val loadingDialog by lazy { LoadingDialog(this) }
     private val doctorAdapter by lazy {
         ListDoctorAdapter { data ->
-            showSnackBar(
-                message = data.email.orEmpty(),
-                snackBarType = SnackBarType.SUCCESS
+            DetailDoctorActivity.launch(
+                context = this,
+                data = data
             )
         }
     }
