@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.databinding.FragmentHomePatientBinding
+import my.id.medicalrecordblockchain.ui.patient.list_doctor.ListDoctorActivity
 import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
 import my.id.medicalrecordblockchain.utils.SnackBarType
@@ -22,9 +23,9 @@ class HomePatientFragment : Fragment() {
     private val loadingDialog by lazy { LoadingDialog(requireContext()) }
     private val servicesAdapter by lazy {
         HomePatientServicesAdapter { data ->
-            showSnackBar(
-                message = data.name.orEmpty(),
-                snackBarType = SnackBarType.SUCCESS
+            ListDoctorActivity.launch(
+                context = requireContext(),
+                data = data
             )
         }
     }

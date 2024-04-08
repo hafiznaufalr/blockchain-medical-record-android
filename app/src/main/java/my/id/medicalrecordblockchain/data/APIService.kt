@@ -2,6 +2,7 @@ package my.id.medicalrecordblockchain.data
 
 import my.id.medicalrecordblockchain.data.requests.SignInRequest
 import my.id.medicalrecordblockchain.data.requests.SignUpRequest
+import my.id.medicalrecordblockchain.data.response.ListDoctorResponse
 import my.id.medicalrecordblockchain.data.response.ServicesResponse
 import my.id.medicalrecordblockchain.data.response.SignInResponse
 import retrofit2.Response
@@ -9,6 +10,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface APIService {
     @POST("/v1/users/register")
@@ -25,4 +27,10 @@ interface APIService {
     suspend fun getServices(
         @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}"
     ): Response<ServicesResponse>
+
+    @GET("/v1/services/{serviceId}/doctors")
+    suspend fun getListDoctorByServices(
+        @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
+        @Path("serviceId") serviceId: Int
+    ): Response<ListDoctorResponse>
 }
