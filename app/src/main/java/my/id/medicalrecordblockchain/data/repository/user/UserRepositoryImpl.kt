@@ -3,6 +3,7 @@ package my.id.medicalrecordblockchain.data.repository.user
 import my.id.medicalrecordblockchain.data.APIService
 import my.id.medicalrecordblockchain.data.requests.SignInRequest
 import my.id.medicalrecordblockchain.data.requests.SignUpRequest
+import my.id.medicalrecordblockchain.data.response.AccountResponse
 import my.id.medicalrecordblockchain.data.response.SignInResponse
 import my.id.medicalrecordblockchain.utils.NetworkHandler
 import my.id.medicalrecordblockchain.utils.ResultData
@@ -20,6 +21,12 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun postSignUp(signUpRequest: SignUpRequest): ResultData<SignInResponse> {
         return NetworkHandler.safeApiCall {
             apiService.postSignUp(signUpRequest)
+        }
+    }
+
+    override suspend fun getAccount(): ResultData<AccountResponse> {
+        return NetworkHandler.safeApiCall {
+            apiService.getAccount()
         }
     }
 

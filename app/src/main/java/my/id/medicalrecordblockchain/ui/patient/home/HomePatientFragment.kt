@@ -1,7 +1,6 @@
 package my.id.medicalrecordblockchain.ui.patient.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,6 @@ import my.id.medicalrecordblockchain.databinding.FragmentHomePatientBinding
 import my.id.medicalrecordblockchain.ui.patient.list_doctor.ListDoctorActivity
 import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
-import my.id.medicalrecordblockchain.utils.SnackBarType
-import my.id.medicalrecordblockchain.utils.showSnackBar
 
 @AndroidEntryPoint
 class HomePatientFragment : Fragment() {
@@ -53,6 +50,7 @@ class HomePatientFragment : Fragment() {
 
     private fun initData() {
         viewModel.getServices()
+        viewModel.getAccount()
     }
 
     private fun initListener() {

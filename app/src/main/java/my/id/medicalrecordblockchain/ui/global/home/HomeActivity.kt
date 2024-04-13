@@ -18,11 +18,6 @@ import my.id.medicalrecordblockchain.utils.decideActionByFlavor
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
-    private val homePatientFragment by lazy { HomePatientFragment() }
-    private val homeDoctorFragment by lazy { HomeDoctorFragment() }
-    private val appointmentPatientFragment by lazy { AppointmentPatientFragment() }
-    private val appointmentDoctorFragment by lazy { AppointmentDoctorFragment() }
-    private val accountFragment by lazy { AccountFragment() }
     private val fragmentManager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,10 +32,10 @@ class HomeActivity : AppCompatActivity() {
     private fun init() {
         decideActionByFlavor(
             patientAction = {
-                renderFragment(homePatientFragment)
+                renderFragment(HomePatientFragment())
             },
             doctorAction = {
-                renderFragment(homeDoctorFragment)
+                renderFragment(HomeDoctorFragment())
             }
         )
     }
@@ -51,10 +46,10 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_home -> {
                     decideActionByFlavor(
                         patientAction = {
-                            renderFragment(homePatientFragment)
+                            renderFragment(HomePatientFragment())
                         },
                         doctorAction = {
-                            renderFragment(homeDoctorFragment)
+                            renderFragment(HomeDoctorFragment())
                         }
                     )
                     return@setOnNavigationItemSelectedListener true
@@ -63,17 +58,17 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_appointments -> {
                     decideActionByFlavor(
                         patientAction = {
-                            renderFragment(appointmentPatientFragment)
+                            renderFragment(AppointmentPatientFragment())
                         },
                         doctorAction = {
-                            renderFragment(appointmentDoctorFragment)
+                            renderFragment(AppointmentDoctorFragment())
                         }
                     )
                     return@setOnNavigationItemSelectedListener true
                 }
 
                 R.id.nav_account -> {
-                    renderFragment(accountFragment)
+                    renderFragment(AccountFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
             }
