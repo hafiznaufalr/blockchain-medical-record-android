@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.databinding.FragmentHomePatientBinding
+import my.id.medicalrecordblockchain.ui.global.home.HomeActivity
 import my.id.medicalrecordblockchain.ui.patient.list_doctor.ListDoctorActivity
 import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
@@ -17,7 +18,6 @@ class HomePatientFragment : Fragment() {
     private var _binding: FragmentHomePatientBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomePatientViewModel by viewModels()
-    private val loadingDialog by lazy { LoadingDialog(requireContext()) }
     private val servicesAdapter by lazy {
         HomePatientServicesAdapter { data ->
             ListDoctorActivity.launch(
@@ -61,16 +61,16 @@ class HomePatientFragment : Fragment() {
         viewModel.services.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is ResultData.Loading -> {
-                    loadingDialog.show()
+                    (requireActivity() as HomeActivity).showProgressLinear(true)
                 }
 
                 is ResultData.Success -> {
-                    loadingDialog.dismiss()
+                    (requireActivity() as HomeActivity).showProgressLinear(false)
                     servicesAdapter.setData(state.data.data)
                 }
 
                 is ResultData.Failure -> {
-                    loadingDialog.dismiss()
+                    (requireActivity() as HomeActivity).showProgressLinear(false)
                 }
             }
         }

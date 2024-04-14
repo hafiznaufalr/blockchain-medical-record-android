@@ -4,6 +4,7 @@ import my.id.medicalrecordblockchain.data.requests.BookAppointmentRequest
 import my.id.medicalrecordblockchain.data.requests.SignInRequest
 import my.id.medicalrecordblockchain.data.requests.SignUpRequest
 import my.id.medicalrecordblockchain.data.response.AccountResponse
+import my.id.medicalrecordblockchain.data.response.AppointmentResponse
 import my.id.medicalrecordblockchain.data.response.BasicResponse
 import my.id.medicalrecordblockchain.data.response.ListDoctorResponse
 import my.id.medicalrecordblockchain.data.response.ServicesResponse
@@ -14,6 +15,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface APIService {
     @POST("/v1/users/register")
@@ -47,4 +49,14 @@ interface APIService {
     suspend fun getAccount(
         @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}"
     ): Response<AccountResponse>
+
+    @GET("/v1/appointments")
+    suspend fun getListAppointments(
+        @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
+        @Query("schedule_date") scheduleDate: String? = null,
+        @Query("health_service_id") healthServiceId: String? = null,
+        @Query("status") status: String? = null,
+        @Query("is_doctor") isDoctor: Boolean? = null,
+        @Query("patient_id") patientId: String? = null
+    ): Response<AppointmentResponse>
 }

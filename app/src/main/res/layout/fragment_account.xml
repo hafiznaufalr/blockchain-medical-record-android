@@ -142,6 +142,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_nik" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_arrow_action"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"

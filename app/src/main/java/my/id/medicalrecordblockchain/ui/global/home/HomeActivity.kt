@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.R
@@ -11,13 +12,14 @@ import my.id.medicalrecordblockchain.databinding.ActivityHomeBinding
 import my.id.medicalrecordblockchain.ui.doctor.appointment.AppointmentDoctorFragment
 import my.id.medicalrecordblockchain.ui.doctor.home.HomeDoctorFragment
 import my.id.medicalrecordblockchain.ui.global.account.AccountFragment
-import my.id.medicalrecordblockchain.ui.patient.appointment.AppointmentPatientFragment
+import my.id.medicalrecordblockchain.ui.patient.appointment.list.AppointmentPatientFragment
 import my.id.medicalrecordblockchain.ui.patient.home.HomePatientFragment
 import my.id.medicalrecordblockchain.utils.decideActionByFlavor
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
+    private var currentFragment: Fragment? = null
     private val fragmentManager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,10 +79,15 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun renderFragment(fragment: Fragment) {
+        currentFragment = fragment
         fragmentManager
             .beginTransaction()
             .replace(R.id.fl_container, fragment)
             .commit()
+    }
+
+    fun showProgressLinear(isVisible: Boolean) {
+//        binding.progressLinear.isVisible = isVisible
     }
 
     companion object {
