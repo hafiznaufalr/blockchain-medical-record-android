@@ -39,4 +39,8 @@ object Preferences {
         editor.putString(SESSION_ACCOUNT, Gson().toJson(data))
         editor.apply()
     }
+
+    fun clear() {
+        preferences.edit().clear().apply()
+    }
 }

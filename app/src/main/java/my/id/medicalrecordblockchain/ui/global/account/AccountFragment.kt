@@ -1,20 +1,26 @@
 package my.id.medicalrecordblockchain.ui.global.account
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import my.id.medicalrecordblockchain.data.Preferences
 import my.id.medicalrecordblockchain.data.response.AccountData
 import my.id.medicalrecordblockchain.databinding.FragmentAccountBinding
 import my.id.medicalrecordblockchain.ui.global.home.HomeActivity
+import my.id.medicalrecordblockchain.ui.global.sign_in.SignInActivity
 import my.id.medicalrecordblockchain.ui.patient.personal_data.info.PersonalDataInfoActivity
 import my.id.medicalrecordblockchain.utils.ResultData
+import my.id.medicalrecordblockchain.utils.SnackBarType
+import my.id.medicalrecordblockchain.utils.showSnackBar
 
 @AndroidEntryPoint
-class AccountFragment: Fragment() {
+class AccountFragment : Fragment() {
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
     private val viewModel: AccountViewModel by viewModels()
@@ -46,6 +52,22 @@ class AccountFragment: Fragment() {
 
         binding.ivArrowAction.setOnClickListener {
             PersonalDataInfoActivity.launch(requireContext())
+        }
+
+        binding.btnSignOut.setOnClickListener {
+            Preferences.clear()
+
+            showSnackBar(
+                message = "Keluar berhasil",
+                snackBarType = SnackBarType.SUCCESS
+            )
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                SignInActivity.launch(
+                    context = requireContext()
+                )
+                requireActivity().finishAffinity()
+            }, 1000)
         }
     }
 
@@ -82,6 +104,6 @@ class AccountFragment: Fragment() {
         binding.tvName.text = data.name
         binding.tvEmail.text = data.email
         binding.tvAddress.text = data.address
-        binding.tvNik.text  = data.identityNumber
+        binding.tvNik.text = data.identityNumber
     }
 }
