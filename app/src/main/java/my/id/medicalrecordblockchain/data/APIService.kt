@@ -3,6 +3,7 @@ package my.id.medicalrecordblockchain.data
 import my.id.medicalrecordblockchain.data.requests.BookAppointmentRequest
 import my.id.medicalrecordblockchain.data.requests.SignInRequest
 import my.id.medicalrecordblockchain.data.requests.SignUpRequest
+import my.id.medicalrecordblockchain.data.requests.UpdateAppointmentRequest
 import my.id.medicalrecordblockchain.data.response.AccountResponse
 import my.id.medicalrecordblockchain.data.response.AppointmentResponse
 import my.id.medicalrecordblockchain.data.response.BasicResponse
@@ -14,6 +15,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -66,4 +68,11 @@ interface APIService {
         @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
         @Path("id") id: String
     ): Response<DetailAppointmentResponse>
+
+    @PATCH("/v1/appointments/{id}")
+    suspend fun updateAppointmentStatus(
+        @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
+        @Path("id") id: String,
+        @Body body: UpdateAppointmentRequest
+    ): Response<BasicResponse>
 }

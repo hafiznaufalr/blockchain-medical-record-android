@@ -2,8 +2,10 @@ package my.id.medicalrecordblockchain.data.repository.user
 
 import my.id.medicalrecordblockchain.data.requests.SignInRequest
 import my.id.medicalrecordblockchain.data.requests.SignUpRequest
+import my.id.medicalrecordblockchain.data.requests.UpdateAppointmentRequest
 import my.id.medicalrecordblockchain.data.response.AccountResponse
 import my.id.medicalrecordblockchain.data.response.AppointmentResponse
+import my.id.medicalrecordblockchain.data.response.BasicResponse
 import my.id.medicalrecordblockchain.data.response.DetailAppointmentResponse
 import my.id.medicalrecordblockchain.data.response.SignInResponse
 import my.id.medicalrecordblockchain.utils.ResultData
@@ -20,4 +22,5 @@ interface UserRepository {
         patientId: String? = null
     ): ResultData<AppointmentResponse>
     suspend fun getAppointmentById(appointmentId: String): ResultData<DetailAppointmentResponse>
+    suspend fun updateAppointmentStatus(appointmentId: String, request: UpdateAppointmentRequest): ResultData<BasicResponse>
 }

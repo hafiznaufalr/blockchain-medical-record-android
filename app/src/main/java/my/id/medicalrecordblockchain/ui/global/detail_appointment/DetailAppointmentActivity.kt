@@ -8,15 +8,20 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.data.response.AppointmentData
 import my.id.medicalrecordblockchain.databinding.ActivityDetailAppointmentBinding
+import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
+import my.id.medicalrecordblockchain.utils.SnackBarType
 import my.id.medicalrecordblockchain.utils.decideActionByFlavor
 import my.id.medicalrecordblockchain.utils.gone
+import my.id.medicalrecordblockchain.utils.showSnackBar
 import my.id.medicalrecordblockchain.utils.visible
 
 @AndroidEntryPoint
 class DetailAppointmentActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailAppointmentBinding
+    private var appointmentId = ""
     private val viewModel: DetailAppointmentViewModel by viewModels()
+    private val loadingDialog by lazy { LoadingDialog(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +34,7 @@ class DetailAppointmentActivity : AppCompatActivity() {
     }
 
     private fun init() {
-
+        appointmentId = intent.getStringExtra(APPOINTMENT_ID) ?: ""
     }
 
     private fun initListener() {
@@ -39,7 +44,7 @@ class DetailAppointmentActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        viewModel.getAppointmentById(intent.getStringExtra(APPOINTMENT_ID) ?: "")
+        viewModel.getAppointmentById(appointmentId)
     }
 
     private fun observer() {
@@ -61,6 +66,34 @@ class DetailAppointmentActivity : AppCompatActivity() {
                 }
             }
         }
+
+        viewModel.updateAppointmentStatus.observe(this) { state ->
+            when (state) {
+                is ResultData.Loading -> {
+                    loadingDialog.show()
+                }
+
+                is ResultData.Success -> {
+                    loadingDialog.dismiss()
+
+                    showSnackBar(
+                        message = "Janji temu berhasil dibatalkan",
+                        snackBarType = SnackBarType.SUCCESS
+                    )
+
+                    viewModel.getAppointmentById(appointmentId)
+                }
+
+                is ResultData.Failure -> {
+                    loadingDialog.dismiss()
+                    showSnackBar(
+                        message = state.error,
+                        snackBarType = SnackBarType.ERROR
+                    )
+                }
+            }
+
+        }
     }
 
     private fun setupButtonByStatus(status: String) {
@@ -74,6 +107,12 @@ class DetailAppointmentActivity : AppCompatActivity() {
                         binding.flButton.visible()
                         binding.btnPrimary.visible()
                         binding.btnPrimary.text = "Batalkan Janji"
+                        binding.btnPrimary.setOnClickListener {
+                            viewModel.updateAppointmentStatus(
+                                appointmentId = appointmentId,
+                                status = "CANCELLED"
+                            )
+                        }
                     }
 
                     "UPCOMING", "CANCELLED", "REJECTED" -> {

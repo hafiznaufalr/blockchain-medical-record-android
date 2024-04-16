@@ -35,16 +35,11 @@ class AppointmentPatientFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-        initData()
         observer()
     }
 
     private fun init() {
         binding.rvAppointment.adapter = adapter
-    }
-
-    private fun initData() {
-        viewModel.getAppointmentList()
     }
 
     private fun observer() {
@@ -64,5 +59,10 @@ class AppointmentPatientFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAppointmentList()
     }
 }

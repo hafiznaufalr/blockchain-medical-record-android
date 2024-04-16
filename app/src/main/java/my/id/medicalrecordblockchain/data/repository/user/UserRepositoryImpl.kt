@@ -3,8 +3,10 @@ package my.id.medicalrecordblockchain.data.repository.user
 import my.id.medicalrecordblockchain.data.APIService
 import my.id.medicalrecordblockchain.data.requests.SignInRequest
 import my.id.medicalrecordblockchain.data.requests.SignUpRequest
+import my.id.medicalrecordblockchain.data.requests.UpdateAppointmentRequest
 import my.id.medicalrecordblockchain.data.response.AccountResponse
 import my.id.medicalrecordblockchain.data.response.AppointmentResponse
+import my.id.medicalrecordblockchain.data.response.BasicResponse
 import my.id.medicalrecordblockchain.data.response.DetailAppointmentResponse
 import my.id.medicalrecordblockchain.data.response.SignInResponse
 import my.id.medicalrecordblockchain.utils.NetworkHandler
@@ -53,6 +55,15 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun getAppointmentById(appointmentId: String): ResultData<DetailAppointmentResponse> {
         return NetworkHandler.safeApiCall {
             apiService.getAppointmentById(id = appointmentId)
+        }
+    }
+
+    override suspend fun updateAppointmentStatus(appointmentId: String, request: UpdateAppointmentRequest): ResultData<BasicResponse> {
+        return NetworkHandler.safeApiCall {
+            apiService.updateAppointmentStatus(
+                id = appointmentId,
+                body = request
+            )
         }
     }
 
