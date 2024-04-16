@@ -61,7 +61,7 @@ interface APIService {
         @Query("patient_id") patientId: String? = null
     ): Response<AppointmentResponse>
 
-    @GET("/v1/appointments/{id}")
+    @GET("/v1/appointments/details/{id}")
     suspend fun getAppointmentById(
         @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
         @Path("id") id: String

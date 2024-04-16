@@ -23,12 +23,19 @@ class DetailAppointmentActivity : AppCompatActivity() {
         binding = ActivityDetailAppointmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
+        initListener()
         initData()
         observer()
     }
 
     private fun init() {
 
+    }
+
+    private fun initListener() {
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun initData() {
@@ -93,6 +100,7 @@ class DetailAppointmentActivity : AppCompatActivity() {
                         binding.btnSecondary.visible()
                         binding.btnSecondary.text = "Tolak"
                     }
+
                     "UPCOMING" -> {
                         binding.vBtnSeparator.gone()
                         binding.btnSecondary.gone()
@@ -120,6 +128,13 @@ class DetailAppointmentActivity : AppCompatActivity() {
     }
 
     private fun setupDetailAppointment(data: AppointmentData) {
+        binding.tvBookingId.text = ""
+        binding.tvBookingDate.text = data.bookingAt
+        binding.tvStatus.text = data.status
+        binding.tvDoctorPatientName.text = data.doctorName
+        binding.tvAppointmentDate.text = "${data.scheduleDate} - ${data.scheduleTime}"
+        binding.tvSymptoms.text = data.symptoms
+        binding.tvAllergic.text = data.allergies
     }
 
     companion object {
