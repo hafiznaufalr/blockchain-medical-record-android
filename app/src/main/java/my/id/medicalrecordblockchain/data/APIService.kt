@@ -6,6 +6,7 @@ import my.id.medicalrecordblockchain.data.requests.SignUpRequest
 import my.id.medicalrecordblockchain.data.response.AccountResponse
 import my.id.medicalrecordblockchain.data.response.AppointmentResponse
 import my.id.medicalrecordblockchain.data.response.BasicResponse
+import my.id.medicalrecordblockchain.data.response.DetailAppointmentResponse
 import my.id.medicalrecordblockchain.data.response.ListDoctorResponse
 import my.id.medicalrecordblockchain.data.response.ServicesResponse
 import my.id.medicalrecordblockchain.data.response.SignInResponse
@@ -59,4 +60,10 @@ interface APIService {
         @Query("is_doctor") isDoctor: Boolean? = null,
         @Query("patient_id") patientId: String? = null
     ): Response<AppointmentResponse>
+
+    @GET("/v1/appointments/{id}")
+    suspend fun getAppointmentById(
+        @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
+        @Path("id") id: String
+    ): Response<DetailAppointmentResponse>
 }

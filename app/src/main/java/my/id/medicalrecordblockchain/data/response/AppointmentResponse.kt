@@ -14,6 +14,14 @@ data class AppointmentResponse(
 ) : Parcelable
 
 @Parcelize
+data class DetailAppointmentResponse(
+    @SerializedName("data")
+    val `data`: AppointmentData?,
+    @SerializedName("status")
+    val status: Boolean?
+) : Parcelable
+
+@Parcelize
 data class AppointmentData(
     @SerializedName("allergies")
     val allergies: String?,

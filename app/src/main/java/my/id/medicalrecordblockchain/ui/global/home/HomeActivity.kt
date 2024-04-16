@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.R
@@ -19,7 +18,11 @@ import my.id.medicalrecordblockchain.utils.decideActionByFlavor
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
-    private var currentFragment: Fragment? = null
+    private val homePatientFragment by lazy { HomePatientFragment() }
+    private val homeDoctorFragment by lazy { HomeDoctorFragment() }
+    private val appointmentPatientFragment by lazy { AppointmentPatientFragment() }
+    private val appointmentDoctorFragment by lazy { AppointmentDoctorFragment() }
+    private val accountFragment by lazy { AccountFragment() }
     private val fragmentManager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,10 +37,10 @@ class HomeActivity : AppCompatActivity() {
     private fun init() {
         decideActionByFlavor(
             patientAction = {
-                renderFragment(HomePatientFragment())
+                renderFragment(homePatientFragment)
             },
             doctorAction = {
-                renderFragment(HomeDoctorFragment())
+                renderFragment(homeDoctorFragment)
             }
         )
     }
@@ -48,10 +51,10 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_home -> {
                     decideActionByFlavor(
                         patientAction = {
-                            renderFragment(HomePatientFragment())
+                            renderFragment(homePatientFragment)
                         },
                         doctorAction = {
-                            renderFragment(HomeDoctorFragment())
+                            renderFragment(homeDoctorFragment)
                         }
                     )
                     return@setOnNavigationItemSelectedListener true
@@ -60,17 +63,17 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_appointments -> {
                     decideActionByFlavor(
                         patientAction = {
-                            renderFragment(AppointmentPatientFragment())
+                            renderFragment(appointmentPatientFragment)
                         },
                         doctorAction = {
-                            renderFragment(AppointmentDoctorFragment())
+                            renderFragment(appointmentDoctorFragment)
                         }
                     )
                     return@setOnNavigationItemSelectedListener true
                 }
 
                 R.id.nav_account -> {
-                    renderFragment(AccountFragment())
+                    renderFragment(accountFragment)
                     return@setOnNavigationItemSelectedListener true
                 }
             }
@@ -79,7 +82,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun renderFragment(fragment: Fragment) {
-        currentFragment = fragment
         fragmentManager
             .beginTransaction()
             .replace(R.id.fl_container, fragment)
@@ -87,7 +89,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun showProgressLinear(isVisible: Boolean) {
-//        binding.progressLinear.isVisible = isVisible
+        // binding.progressLinear.isVisible = isVisible
     }
 
     companion object {

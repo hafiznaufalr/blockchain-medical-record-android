@@ -10,7 +10,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.databinding.FragmentHomePatientBinding
 import my.id.medicalrecordblockchain.ui.global.home.HomeActivity
 import my.id.medicalrecordblockchain.ui.patient.list_doctor.ListDoctorActivity
-import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
 
 @AndroidEntryPoint

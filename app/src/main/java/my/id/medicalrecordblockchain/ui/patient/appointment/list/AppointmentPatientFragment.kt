@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.databinding.FragmentAppointmentPatientBinding
+import my.id.medicalrecordblockchain.ui.global.detail_appointment.DetailAppointmentActivity
 import my.id.medicalrecordblockchain.ui.global.home.HomeActivity
-import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
 
 @AndroidEntryPoint
@@ -19,7 +19,7 @@ class AppointmentPatientFragment : Fragment() {
     private val viewModel: AppointmentPatientViewModel by viewModels()
     private val adapter by lazy {
         AppointmentPatientAdapter {
-
+            DetailAppointmentActivity.launch(requireContext(), it.id.toString())
         }
     }
 

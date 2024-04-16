@@ -5,6 +5,7 @@ import my.id.medicalrecordblockchain.data.requests.SignInRequest
 import my.id.medicalrecordblockchain.data.requests.SignUpRequest
 import my.id.medicalrecordblockchain.data.response.AccountResponse
 import my.id.medicalrecordblockchain.data.response.AppointmentResponse
+import my.id.medicalrecordblockchain.data.response.DetailAppointmentResponse
 import my.id.medicalrecordblockchain.data.response.SignInResponse
 import my.id.medicalrecordblockchain.utils.NetworkHandler
 import my.id.medicalrecordblockchain.utils.ResultData
@@ -46,6 +47,12 @@ class UserRepositoryImpl @Inject constructor(
                 isDoctor = isDoctor,
                 patientId = patientId
             )
+        }
+    }
+
+    override suspend fun getAppointmentById(appointmentId: String): ResultData<DetailAppointmentResponse> {
+        return NetworkHandler.safeApiCall {
+            apiService.getAppointmentById(id = appointmentId)
         }
     }
 
