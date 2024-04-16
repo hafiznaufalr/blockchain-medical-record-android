@@ -8,6 +8,7 @@ import android.os.Looper
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
+import my.id.medicalrecordblockchain.data.Preferences
 import my.id.medicalrecordblockchain.data.requests.BookAppointmentRequest
 import my.id.medicalrecordblockchain.databinding.ActivityBookAppointmentBinding
 import my.id.medicalrecordblockchain.ui.global.home.HomeActivity
@@ -47,6 +48,10 @@ class BookAppointmentActivity : AppCompatActivity() {
     }
 
     private fun observer() {
+        Preferences.getAccount()?.let {
+            binding.etAllergic.setText(it.allergies)
+        }
+
         viewModel.bookingValidator.observe(this) {
             showSnackBar(
                 message = it,
