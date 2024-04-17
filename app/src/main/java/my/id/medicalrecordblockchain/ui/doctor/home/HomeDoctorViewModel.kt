@@ -44,7 +44,9 @@ class HomeDoctorViewModel @Inject constructor(
     val localAccount: LiveData<AccountData> = _localAccount
 
     fun getAccount() {
-        _localAccount.value = Preferences.getAccount()
+        Preferences.getAccount()?.let {
+            _localAccount.value = it
+        }
 
         _account.value = ResultData.Loading
         viewModelScope.launch {

@@ -106,14 +106,16 @@
                 app:layout_constraintTop_toBottomOf="@id/iv_logo" />
 
             <EditText
-                android:id="@+id/et_precripstion"
+                android:id="@+id/et_prescription"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:autofillHints="@null"
                 android:background="@drawable/bg_edit_text_inactive"
                 android:fontFamily="@font/fregular"
+                android:gravity="top"
                 android:inputType="textMultiLine"
+                android:minHeight="100dp"
                 android:padding="8dp"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -168,7 +170,7 @@
             android:id="@+id/btn_action"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="16dp"
             android:backgroundTint="@color/black"
             android:fontFamily="@font/fsemibold"

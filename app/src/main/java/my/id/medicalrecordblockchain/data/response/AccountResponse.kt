@@ -24,6 +24,8 @@ data class AccountData(
     val bloodGroup: String?,
     @SerializedName("date_of_birth")
     val dateOfBirth: String?,
+    @SerializedName("doctor_id")
+    val doctorId: Int?,
     @SerializedName("email")
     val email: String?,
     @SerializedName("gender")

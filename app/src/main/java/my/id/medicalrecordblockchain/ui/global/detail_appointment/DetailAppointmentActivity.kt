@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.data.response.AppointmentData
 import my.id.medicalrecordblockchain.databinding.ActivityDetailAppointmentBinding
+import my.id.medicalrecordblockchain.ui.doctor.medical_record.history.MedicalRecordHistoryActivity
 import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
 import my.id.medicalrecordblockchain.utils.SnackBarType
@@ -62,7 +63,7 @@ class DetailAppointmentActivity : AppCompatActivity() {
                 is ResultData.Success -> {
                     state.data.data?.let {
                         setupDetailAppointment(it)
-                        setupButtonByStatus(it.status.orEmpty())
+                        setupButtonByStatus(it)
                     }
                 }
 
@@ -102,7 +103,8 @@ class DetailAppointmentActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupButtonByStatus(status: String) {
+    private fun setupButtonByStatus(data: AppointmentData) {
+        val status = data.status.orEmpty()
         decideActionByFlavor(
             patientAction = {
                 when (status) {
@@ -167,6 +169,12 @@ class DetailAppointmentActivity : AppCompatActivity() {
                         binding.flButton.visible()
                         binding.btnPrimary.visible()
                         binding.btnPrimary.text = "Lihat Riwayat Kesehatan"
+                        binding.btnPrimary.setOnClickListener {
+                            MedicalRecordHistoryActivity.launch(
+                                context = this,
+                                appointmentData = data
+                            )
+                        }
                     }
 
                     "CANCELLED", "REJECTED" -> {
