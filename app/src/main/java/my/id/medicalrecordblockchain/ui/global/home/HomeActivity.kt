@@ -38,32 +38,37 @@ class HomeActivity : AppCompatActivity() {
 
     private fun init() {
         indexMenu = intent.getIntExtra(INDEX_MENU, 0)
-
-        decideActionByFlavor(
-            patientAction = {
-                renderFragment(homePatientFragment)
-            },
-            doctorAction = {
-                renderFragment(homeDoctorFragment)
-            }
-        )
     }
 
     private fun initListener() {
         binding.navigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_home -> {
-                    renderScreenByMenu()
+                    decideActionByFlavor(
+                        patientAction = {
+                            renderFragment(homePatientFragment)
+                        },
+                        doctorAction = {
+                            renderFragment(homeDoctorFragment)
+                        }
+                    )
                     return@setOnNavigationItemSelectedListener true
                 }
 
                 R.id.nav_appointments -> {
-                    renderScreenByMenu()
+                    decideActionByFlavor(
+                        patientAction = {
+                            renderFragment(appointmentPatientFragment)
+                        },
+                        doctorAction = {
+                            renderFragment(appointmentDoctorFragment)
+                        }
+                    )
                     return@setOnNavigationItemSelectedListener true
                 }
 
                 R.id.nav_account -> {
-                    renderScreenByMenu()
+                    renderFragment(accountFragment)
                     return@setOnNavigationItemSelectedListener true
                 }
             }
