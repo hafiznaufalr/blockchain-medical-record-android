@@ -39,7 +39,7 @@ class AppointmentPatientAdapter(
             binding.tvDoctorName.text = item.doctorName
             binding.tvDoctorType.text = item.healthServiceName
             binding.tvAppointmentDate.text = item.scheduleDate
-            binding.tvAppointmentId.text = item.id.toString()
+            binding.tvAppointmentId.text = item.recordNumber
             binding.tvAppointmentStatus.text = item.status
         }
     }

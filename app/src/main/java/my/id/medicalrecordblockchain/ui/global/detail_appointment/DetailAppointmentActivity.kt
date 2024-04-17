@@ -167,7 +167,7 @@ class DetailAppointmentActivity : AppCompatActivity() {
     }
 
     private fun setupDetailAppointment(data: AppointmentData) {
-        binding.tvBookingId.text = ""
+        binding.tvBookingId.text = data.recordNumber
         binding.tvBookingDate.text = data.bookingAt
         binding.tvStatus.text = data.status
         binding.tvDoctorPatientName.text = data.doctorName

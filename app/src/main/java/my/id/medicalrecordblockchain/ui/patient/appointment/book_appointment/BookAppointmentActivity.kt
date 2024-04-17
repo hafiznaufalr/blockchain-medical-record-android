@@ -11,6 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.data.Preferences
 import my.id.medicalrecordblockchain.data.requests.BookAppointmentRequest
 import my.id.medicalrecordblockchain.databinding.ActivityBookAppointmentBinding
+import my.id.medicalrecordblockchain.ui.global.detail_appointment.DetailAppointmentActivity
 import my.id.medicalrecordblockchain.ui.global.home.HomeActivity
 import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
@@ -73,7 +74,13 @@ class BookAppointmentActivity : AppCompatActivity() {
                     )
 
                     Handler(Looper.getMainLooper()).postDelayed({
-                        HomeActivity.launch(this)
+                        state.data.data?.id?.let { appointmentId ->
+                            HomeActivity.launch(context = this, indexMenu = 1)
+                            DetailAppointmentActivity.launch(
+                                context = this,
+                                appointmentId = appointmentId.toString()
+                            )
+                        }
                     }, 500)
                 }
 

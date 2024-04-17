@@ -71,7 +71,7 @@ class DetailDoctorActivity : AppCompatActivity() {
     private fun initListener() {
         binding.btnNext.setOnClickListener {
             request = BookAppointmentRequest(
-                doctorId = doctorData?.id,
+                doctorId = doctorData?.doctorId,
                 healthServiceId = doctorData?.healthServiceId,
                 scheduleDate = getDateNow(),
                 scheduleTime = pickedTime

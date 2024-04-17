@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.R
@@ -24,6 +25,7 @@ class HomeActivity : AppCompatActivity() {
     private val appointmentDoctorFragment by lazy { AppointmentDoctorFragment() }
     private val accountFragment by lazy { AccountFragment() }
     private val fragmentManager = supportFragmentManager
+    private var indexMenu = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        indexMenu = intent.getIntExtra(INDEX_MENU, 0)
+
         decideActionByFlavor(
             patientAction = {
                 renderFragment(homePatientFragment)
@@ -49,35 +53,54 @@ class HomeActivity : AppCompatActivity() {
         binding.navigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_home -> {
-                    decideActionByFlavor(
-                        patientAction = {
-                            renderFragment(homePatientFragment)
-                        },
-                        doctorAction = {
-                            renderFragment(homeDoctorFragment)
-                        }
-                    )
+                    renderScreenByMenu()
                     return@setOnNavigationItemSelectedListener true
                 }
 
                 R.id.nav_appointments -> {
-                    decideActionByFlavor(
-                        patientAction = {
-                            renderFragment(appointmentPatientFragment)
-                        },
-                        doctorAction = {
-                            renderFragment(appointmentDoctorFragment)
-                        }
-                    )
+                    renderScreenByMenu()
                     return@setOnNavigationItemSelectedListener true
                 }
 
                 R.id.nav_account -> {
-                    renderFragment(accountFragment)
+                    renderScreenByMenu()
                     return@setOnNavigationItemSelectedListener true
                 }
             }
             return@setOnNavigationItemSelectedListener false
+        }
+
+        binding.navigation.menu[indexMenu].isChecked = true
+        renderScreenByMenu()
+    }
+
+    private fun renderScreenByMenu() {
+        when (indexMenu) {
+            0 -> {
+                decideActionByFlavor(
+                    patientAction = {
+                        renderFragment(homePatientFragment)
+                    },
+                    doctorAction = {
+                        renderFragment(homeDoctorFragment)
+                    }
+                )
+            }
+
+            1 -> {
+                decideActionByFlavor(
+                    patientAction = {
+                        renderFragment(appointmentPatientFragment)
+                    },
+                    doctorAction = {
+                        renderFragment(appointmentDoctorFragment)
+                    }
+                )
+            }
+
+            2 -> {
+                renderFragment(accountFragment)
+            }
         }
     }
 
@@ -93,12 +116,15 @@ class HomeActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun launch(context: Context) {
+        private const val INDEX_MENU = "INDEX_MENU"
+        fun launch(context: Context, indexMenu: Int = 0) {
             context.startActivity(
                 Intent(
                     context,
                     HomeActivity::class.java
-                )
+                ).apply {
+                    putExtra(INDEX_MENU, indexMenu)
+                }
             )
         }
     }

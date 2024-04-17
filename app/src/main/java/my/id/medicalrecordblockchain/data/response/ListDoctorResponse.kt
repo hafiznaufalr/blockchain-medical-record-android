@@ -23,6 +23,8 @@ data class DoctorData(
     val dateOfBirth: String?,
     @SerializedName("description")
     val description: String?,
+    @SerializedName("doctor_id")
+    val doctorId: Int?,
     @SerializedName("email")
     val email: String?,
     @SerializedName("gender")
