@@ -22,6 +22,11 @@ class DetailAppointmentActivity : AppCompatActivity() {
     private var appointmentId = ""
     private val viewModel: DetailAppointmentViewModel by viewModels()
     private val loadingDialog by lazy { LoadingDialog(this) }
+    private val messageByStatus: HashMap<String, String> = hashMapOf(
+        "CANCELLED" to "dibatalkan",
+        "REJECTED" to "ditolak",
+        "UPCOMING" to "diterima"
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,22 +81,7 @@ class DetailAppointmentActivity : AppCompatActivity() {
                 is ResultData.Success -> {
                     loadingDialog.dismiss()
 
-                    val message = when (state.data.data?.status) {
-                        "CANCELLED" -> {
-                            "dibatalkan"
-                        }
-
-                        "REJECTED" -> {
-                            "ditolak"
-                        }
-
-                        "UPCOMING" -> {
-                            "diterima"
-                        }
-
-                        else -> ""
-                    }
-
+                    val message = messageByStatus[state.data.data?.status]
                     showSnackBar(
                         message = "Janji temu berhasil $message",
                         snackBarType = SnackBarType.SUCCESS
