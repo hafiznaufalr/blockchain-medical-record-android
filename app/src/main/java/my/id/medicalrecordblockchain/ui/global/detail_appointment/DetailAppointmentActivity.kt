@@ -170,10 +170,20 @@ class DetailAppointmentActivity : AppCompatActivity() {
         binding.tvBookingId.text = data.recordNumber
         binding.tvBookingDate.text = data.bookingAt
         binding.tvStatus.text = data.status
-        binding.tvDoctorPatientName.text = data.doctorName
         binding.tvAppointmentDate.text = "${data.scheduleDate} - ${data.scheduleTime}"
         binding.tvSymptoms.text = data.symptoms
         binding.tvAllergic.text = data.allergies
+
+        decideActionByFlavor(
+            patientAction = {
+                binding.tvLabelDoctorPatient.text = "Dokter"
+                binding.tvDoctorPatientName.text = data.doctorName
+            },
+            doctorAction = {
+                binding.tvLabelDoctorPatient.text = "Pasien"
+                binding.tvDoctorPatientName.text = data.patientName
+            }
+        )
     }
 
     companion object {
