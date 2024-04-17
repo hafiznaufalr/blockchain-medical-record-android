@@ -76,8 +76,24 @@ class DetailAppointmentActivity : AppCompatActivity() {
                 is ResultData.Success -> {
                     loadingDialog.dismiss()
 
+                    val message = when (state.data.data?.status) {
+                        "CANCELLED" -> {
+                            "dibatalkan"
+                        }
+
+                        "REJECTED" -> {
+                            "ditolak"
+                        }
+
+                        "UPCOMING" -> {
+                            "diterima"
+                        }
+
+                        else -> ""
+                    }
+
                     showSnackBar(
-                        message = "Janji temu berhasil dibatalkan",
+                        message = "Janji temu berhasil $message",
                         snackBarType = SnackBarType.SUCCESS
                     )
 
@@ -133,11 +149,25 @@ class DetailAppointmentActivity : AppCompatActivity() {
                 when (status) {
                     "WAITING" -> {
                         binding.flButton.visible()
+
                         binding.btnPrimary.visible()
                         binding.btnPrimary.text = "Terima"
+                        binding.btnPrimary.setOnClickListener {
+                            viewModel.updateAppointmentStatus(
+                                appointmentId = appointmentId,
+                                status = "UPCOMING"
+                            )
+                        }
+
                         binding.vBtnSeparator.visible()
                         binding.btnSecondary.visible()
                         binding.btnSecondary.text = "Tolak"
+                        binding.btnSecondary.setOnClickListener {
+                            viewModel.updateAppointmentStatus(
+                                appointmentId = appointmentId,
+                                status = "REJECTED"
+                            )
+                        }
                     }
 
                     "UPCOMING" -> {

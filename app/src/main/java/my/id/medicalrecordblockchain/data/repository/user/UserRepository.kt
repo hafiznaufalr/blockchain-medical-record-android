@@ -22,5 +22,5 @@ interface UserRepository {
         patientId: String? = null
     ): ResultData<AppointmentResponse>
     suspend fun getAppointmentById(appointmentId: String): ResultData<DetailAppointmentResponse>
-    suspend fun updateAppointmentStatus(appointmentId: String, request: UpdateAppointmentRequest): ResultData<BasicResponse>
+    suspend fun updateAppointmentStatus(appointmentId: String, request: UpdateAppointmentRequest): ResultData<DetailAppointmentResponse>
 }

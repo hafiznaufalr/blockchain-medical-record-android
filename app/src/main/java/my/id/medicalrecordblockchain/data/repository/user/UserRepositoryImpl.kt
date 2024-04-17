@@ -58,7 +58,7 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun updateAppointmentStatus(appointmentId: String, request: UpdateAppointmentRequest): ResultData<BasicResponse> {
+    override suspend fun updateAppointmentStatus(appointmentId: String, request: UpdateAppointmentRequest): ResultData<DetailAppointmentResponse> {
         return NetworkHandler.safeApiCall {
             apiService.updateAppointmentStatus(
                 id = appointmentId,

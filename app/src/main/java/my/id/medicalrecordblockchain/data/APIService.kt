@@ -74,5 +74,5 @@ interface APIService {
         @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
         @Path("id") id: String,
         @Body body: UpdateAppointmentRequest
-    ): Response<BasicResponse>
+    ): Response<DetailAppointmentResponse>
 }

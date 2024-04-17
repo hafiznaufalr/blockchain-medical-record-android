@@ -31,8 +31,8 @@ class DetailAppointmentViewModel @Inject constructor(
         }
     }
 
-    private val _updateAppointmentStatus = MutableLiveData<ResultData<BasicResponse>>()
-    val updateAppointmentStatus: LiveData<ResultData<BasicResponse>> = _updateAppointmentStatus
+    private val _updateAppointmentStatus = MutableLiveData<ResultData<DetailAppointmentResponse>>()
+    val updateAppointmentStatus: LiveData<ResultData<DetailAppointmentResponse>> = _updateAppointmentStatus
 
     fun updateAppointmentStatus(appointmentId: String, status: String) {
         _updateAppointmentStatus.value = ResultData.Loading
