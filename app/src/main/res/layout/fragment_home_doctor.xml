@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/screen_color"
-    tools:context=".ui.doctor.home.HomeDoctorActivity">
+    android:background="@color/screen_color">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_image"
@@ -54,18 +53,34 @@
         app:layout_constraintStart_toStartOf="@id/iv_image"
         app:layout_constraintTop_toBottomOf="@id/iv_image" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_new_request"
+    <FrameLayout
+        android:id="@+id/fl_new_request"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_new_request"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16sp"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_appointment_patient"
-        android:layout_marginHorizontal="20dp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_new_request">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_new_request"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_appointment_patient" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_empty_new_request"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Belum ada permintaan baru"
+            android:visibility="gone" />
+
+    </FrameLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_label_schedule"
@@ -77,18 +92,34 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/iv_image"
-        app:layout_constraintTop_toBottomOf="@id/rv_new_request" />
+        app:layout_constraintTop_toBottomOf="@id/fl_new_request" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_schedule"
+    <FrameLayout
+        android:id="@+id/fl_schedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_schedule"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16sp"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_appointment_patient"
-        android:layout_marginHorizontal="20dp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_schedule">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_schedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_appointment_patient" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_empty_schedule"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Belum ada jadwal"
+            android:visibility="gone" />
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

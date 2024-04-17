@@ -17,6 +17,7 @@ import my.id.medicalrecordblockchain.ui.global.sign_in.SignInActivity
 import my.id.medicalrecordblockchain.ui.patient.personal_data.info.PersonalDataInfoActivity
 import my.id.medicalrecordblockchain.utils.ResultData
 import my.id.medicalrecordblockchain.utils.SnackBarType
+import my.id.medicalrecordblockchain.utils.decideActionByFlavor
 import my.id.medicalrecordblockchain.utils.showSnackBar
 
 @AndroidEntryPoint
@@ -43,6 +44,14 @@ class AccountFragment : Fragment() {
     }
 
     private fun init() {
+        decideActionByFlavor(
+            patientAction = {
+                binding.tvAction.text = "Data Pribadi"
+            },
+            doctorAction = {
+                binding.tvAction.text = "Atur Jadwal"
+            }
+        )
     }
 
     private fun initListener() {

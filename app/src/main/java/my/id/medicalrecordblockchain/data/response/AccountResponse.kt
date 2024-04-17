@@ -45,5 +45,7 @@ data class AccountData(
     @SerializedName("type")
     val type: String?,
     @SerializedName("weight")
-    val weight: Int?
+    val weight: Int?,
+    @SerializedName("health_service_name")
+    val healthServiceName: String?
 ) : Parcelable
