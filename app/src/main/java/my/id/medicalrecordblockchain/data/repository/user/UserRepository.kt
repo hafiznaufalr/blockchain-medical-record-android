@@ -5,7 +5,6 @@ import my.id.medicalrecordblockchain.data.requests.SignUpRequest
 import my.id.medicalrecordblockchain.data.requests.UpdateAppointmentRequest
 import my.id.medicalrecordblockchain.data.response.AccountResponse
 import my.id.medicalrecordblockchain.data.response.AppointmentResponse
-import my.id.medicalrecordblockchain.data.response.BasicResponse
 import my.id.medicalrecordblockchain.data.response.DetailAppointmentResponse
 import my.id.medicalrecordblockchain.data.response.SignInResponse
 import my.id.medicalrecordblockchain.utils.ResultData

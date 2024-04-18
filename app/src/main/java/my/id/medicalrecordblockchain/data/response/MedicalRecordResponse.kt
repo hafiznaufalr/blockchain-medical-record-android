@@ -6,6 +6,14 @@ import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
 
 @Parcelize
+data class MedicalRecordResponse(
+    @SerializedName("status")
+    val status: Boolean?,
+    @SerializedName("data")
+    val data: MedicalRecordData?
+) : Parcelable
+
+@Parcelize
 data class MedicalRecordData(
     @SerializedName("additional_document_path")
     val additionalDocumentPath: String?,

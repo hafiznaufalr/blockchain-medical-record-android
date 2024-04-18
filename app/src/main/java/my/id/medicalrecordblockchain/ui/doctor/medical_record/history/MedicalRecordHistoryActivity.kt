@@ -9,6 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.data.response.AppointmentData
 import my.id.medicalrecordblockchain.databinding.ActivityMedicalRecordHistoryBinding
 import my.id.medicalrecordblockchain.ui.doctor.medical_record.write.WriteMedicalRecordActivity
+import my.id.medicalrecordblockchain.ui.global.medical_record.DetailMedicalRecordActivity
 import my.id.medicalrecordblockchain.utils.ResultData
 
 @AndroidEntryPoint
@@ -17,7 +18,10 @@ class MedicalRecordHistoryActivity : AppCompatActivity() {
     private val viewModel: MedicalRecordHistoryViewModel by viewModels()
     private val adapter by lazy {
         MedicalRecordHistoryAdapter {
-
+            DetailMedicalRecordActivity.launch(
+                context = this,
+                appointmentData = it
+            )
         }
     }
     private var appointmentData: AppointmentData? = null

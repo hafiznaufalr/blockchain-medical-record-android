@@ -10,6 +10,7 @@ import my.id.medicalrecordblockchain.data.response.AppointmentResponse
 import my.id.medicalrecordblockchain.data.response.BasicResponse
 import my.id.medicalrecordblockchain.data.response.DetailAppointmentResponse
 import my.id.medicalrecordblockchain.data.response.ListDoctorResponse
+import my.id.medicalrecordblockchain.data.response.MedicalRecordResponse
 import my.id.medicalrecordblockchain.data.response.ServicesResponse
 import my.id.medicalrecordblockchain.data.response.SignInResponse
 import retrofit2.Response
@@ -55,6 +56,12 @@ interface APIService {
         @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}"
     ): Response<AccountResponse>
 
+    @GET("/v1/users/{id}")
+    suspend fun getPatientById(
+        @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
+        @Path("id") patientId: String
+    ): Response<AccountResponse>
+
     @GET("/v1/appointments")
     suspend fun getListAppointments(
         @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
@@ -79,10 +86,10 @@ interface APIService {
     ): Response<DetailAppointmentResponse>
 
     @GET("/v1/appointments/{id}")
-    suspend fun getHistoryMedicalRecord(
+    suspend fun getMedicalRecordById(
         @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
         @Path("id") appointmentId: String
-    ): Response<BasicResponse>
+    ): Response<MedicalRecordResponse>
 
     @PUT("/v1/appointments/{id}")
     suspend fun writeMedicalRecord(

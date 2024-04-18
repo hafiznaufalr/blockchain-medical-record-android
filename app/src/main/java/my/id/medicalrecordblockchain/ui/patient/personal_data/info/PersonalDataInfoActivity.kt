@@ -9,6 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.R
 import my.id.medicalrecordblockchain.data.response.AccountData
 import my.id.medicalrecordblockchain.databinding.ActivityPersonalDataInfoBinding
+import my.id.medicalrecordblockchain.utils.calculateAge
 
 @AndroidEntryPoint
 class PersonalDataInfoActivity : AppCompatActivity() {
@@ -34,7 +35,7 @@ class PersonalDataInfoActivity : AppCompatActivity() {
 
     private fun setupPersonalDataInfo(data: AccountData) {
         binding.tvGender.text = data.gender
-        binding.tvAge.text = "-"
+        binding.tvAge.text = calculateAge(data.dateOfBirth.orEmpty())
         binding.tvWeight.text = "${data.weight} Kg"
         binding.tvHeight.text = "${data.height} Cm"
         binding.tvAllergic.text = data.allergies

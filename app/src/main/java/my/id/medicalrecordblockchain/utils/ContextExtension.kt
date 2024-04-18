@@ -13,8 +13,13 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import my.id.medicalrecordblockchain.BuildConfig
 import my.id.medicalrecordblockchain.R
+import java.time.LocalDate
+import java.time.Period
+import java.util.Calendar
 import kotlin.math.roundToInt
 
 fun Context.getDrawableResources(
@@ -87,4 +92,28 @@ fun Context.getLifecycleOwner(): LifecycleOwner {
     } catch (exception: ClassCastException) {
         (this as ContextWrapper).baseContext as LifecycleOwner
     }
+}
+
+fun calculateAge(date: String): String {
+    return try {
+        val dob = Calendar.getInstance()
+        val today = Calendar.getInstance()
+
+        val parentSplitter = date.split('T')
+        val splitter = parentSplitter[0].split('-')
+        dob.set(splitter[0].toInt(), splitter[1].toInt(), splitter[2].toInt())
+
+        var age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR)
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) {
+            age--
+        }
+
+        val ageInt = age + 1
+
+        "$ageInt Tahun"
+    } catch (exception: Exception) {
+        "-"
+    }
+
 }
