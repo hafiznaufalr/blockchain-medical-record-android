@@ -9,6 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.data.response.AppointmentData
 import my.id.medicalrecordblockchain.databinding.ActivityDetailAppointmentBinding
 import my.id.medicalrecordblockchain.ui.doctor.medical_record.history.MedicalRecordHistoryActivity
+import my.id.medicalrecordblockchain.ui.global.medical_record.DetailMedicalRecordActivity
 import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
 import my.id.medicalrecordblockchain.utils.SnackBarType
@@ -134,6 +135,12 @@ class DetailAppointmentActivity : AppCompatActivity() {
                         binding.flButton.visible()
                         binding.btnPrimary.visible()
                         binding.btnPrimary.text = "Lihat Rekam Medis"
+                        binding.btnPrimary.setOnClickListener {
+                            DetailMedicalRecordActivity.launch(
+                                context = this,
+                                appointmentData = data
+                            )
+                        }
                     }
                 }
             },
@@ -188,6 +195,12 @@ class DetailAppointmentActivity : AppCompatActivity() {
                         binding.flButton.visible()
                         binding.btnPrimary.visible()
                         binding.btnPrimary.text = "Lihat Rekam Medis"
+                        binding.btnPrimary.setOnClickListener {
+                            DetailMedicalRecordActivity.launch(
+                                context = this,
+                                appointmentData = data
+                            )
+                        }
                     }
                 }
             }
