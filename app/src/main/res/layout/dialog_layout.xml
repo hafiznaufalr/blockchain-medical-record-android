@@ -11,6 +11,6 @@
         android:layout_height="80dp"
         android:indeterminate="true"
         android:padding="16dp"
-        app:indicatorColor="@color/black" />
+        app:indicatorColor="@color/primary" />
 
 </androidx.cardview.widget.CardView>

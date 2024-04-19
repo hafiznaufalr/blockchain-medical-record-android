@@ -23,7 +23,7 @@
         android:layout_margin="20dp"
         android:fontFamily="@font/fsemibold"
         android:text="Data Pribadi"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_back" />

@@ -12,7 +12,7 @@
         android:layout_margin="20dp"
         android:fontFamily="@font/fsemibold"
         android:text="Akun"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,11 +22,13 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="80dp"
-        android:background="#D9D9D9"
+        android:scaleType="centerInside"
+        android:tint="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_sub_title"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50percent" />
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50percent"
+        app:srcCompat="@drawable/ic_patient" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_label_name"
@@ -157,7 +159,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="24dp"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/primary"
         android:fontFamily="@font/fsemibold"
         android:insetTop="0dp"
         android:insetBottom="0dp"

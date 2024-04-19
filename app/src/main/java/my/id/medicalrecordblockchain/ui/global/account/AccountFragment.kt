@@ -6,9 +6,11 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import my.id.medicalrecordblockchain.R
 import my.id.medicalrecordblockchain.data.Preferences
 import my.id.medicalrecordblockchain.data.response.AccountData
 import my.id.medicalrecordblockchain.databinding.FragmentAccountBinding
@@ -46,9 +48,21 @@ class AccountFragment : Fragment() {
     private fun init() {
         decideActionByFlavor(
             patientAction = {
+                binding.ivAvatar.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_patient
+                    )
+                )
                 binding.tvAction.text = "Data Pribadi"
             },
             doctorAction = {
+                binding.ivAvatar.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_doctor
+                    )
+                )
                 binding.tvAction.text = "Atur Jadwal"
             }
         )

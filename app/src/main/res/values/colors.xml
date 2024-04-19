@@ -22,7 +22,7 @@
     <color name="neutral_800">#474747</color>
     <color name="neutral_900">#333333</color>
 
-    <color name="primary">#218c74</color>
+    <color name="primary">#064833</color>
     <color name="green_death">#50dfbf</color>
 
     <color name="info_100">#e6f7ff</color>
@@ -50,5 +50,5 @@
     <color name="destructive_500">#752522</color>
 
     <color name="transparent">#00000000</color>
-    <color name="screen_color">#F2F2F2</color>
+    <color name="screen_color">#FFFFFF</color>
 </resources>

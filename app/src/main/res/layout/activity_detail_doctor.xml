@@ -20,11 +20,12 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="40dp"
-        android:background="#D9D9D9"
+        android:tint="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_back"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50percent" />
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50percent"
+        app:srcCompat="@drawable/ic_doctor" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_doctor_name"
@@ -70,6 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        app:cardBackgroundColor="@color/neutral_100"
         app:cardCornerRadius="16dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -154,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="16dp"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="@color/primary"
             android:fontFamily="@font/fsemibold"
             android:insetTop="0dp"
             android:insetBottom="0dp"
