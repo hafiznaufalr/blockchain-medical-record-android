@@ -5,6 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +26,18 @@ class PersonalDataFormActivity : AppCompatActivity() {
     private lateinit var signUpRequest: SignUpRequest
     private val signUpViewModel: SignUpViewModel by viewModels()
     private val loadingDialog by lazy { LoadingDialog(this) }
+    private var selectedBlood = ""
+    private val bloodTypes = listOf(
+        "A",
+        "B",
+        "AB",
+        "O"
+    )
+    private var selectedGender = ""
+    private val genders = listOf(
+        Pair("MALE", "Laki-laki"),
+        Pair("FEMALE", "Perempuan")
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +53,46 @@ class PersonalDataFormActivity : AppCompatActivity() {
         intent.getParcelableExtra<SignUpRequest>(KEY_SIGN_UP_REQ)?.let {
             signUpRequest = it
         }
+
+        val genderAdapter: ArrayAdapter<String> = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            genders.map { it.second }
+        ).apply {
+            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+        binding.etGender.apply {
+            adapter = genderAdapter
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    selectedGender = genders[p2].first
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                }
+
+            }
+        }
+
+        val bloodTypeAdapter: ArrayAdapter<String> = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            bloodTypes
+        ).apply {
+            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+        binding.etBloodType.apply {
+            adapter = bloodTypeAdapter
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    selectedBlood = bloodTypes[p2]
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                }
+
+            }
+        }
     }
 
     private fun initListener() {
@@ -48,8 +103,8 @@ class PersonalDataFormActivity : AppCompatActivity() {
                     weight = binding.etWeight.text.toString().toIntOrNull(),
                     height = binding.etHeight.text.toString().toIntOrNull(),
                     allergies = binding.etAllergy.text.toString().trim(),
-                    gender = binding.etGender.text.toString().trim(),
-                    bloodGroup = binding.etBloodType.text.toString().trim()
+                    gender = selectedGender,
+                    bloodGroup = selectedBlood
                 )
             )
         }
