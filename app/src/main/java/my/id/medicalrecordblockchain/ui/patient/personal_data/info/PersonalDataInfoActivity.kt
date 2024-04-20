@@ -2,14 +2,14 @@ package my.id.medicalrecordblockchain.ui.patient.personal_data.info
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
-import my.id.medicalrecordblockchain.R
 import my.id.medicalrecordblockchain.data.response.AccountData
 import my.id.medicalrecordblockchain.databinding.ActivityPersonalDataInfoBinding
 import my.id.medicalrecordblockchain.utils.calculateAge
+import my.id.medicalrecordblockchain.utils.getGender
 
 @AndroidEntryPoint
 class PersonalDataInfoActivity : AppCompatActivity() {
@@ -34,7 +34,7 @@ class PersonalDataInfoActivity : AppCompatActivity() {
     }
 
     private fun setupPersonalDataInfo(data: AccountData) {
-        binding.tvGender.text = data.gender
+        binding.tvGender.text = data.gender?.getGender()
         binding.tvAge.text = calculateAge(data.dateOfBirth.orEmpty())
         binding.tvWeight.text = "${data.weight} Kg"
         binding.tvHeight.text = "${data.height} Cm"

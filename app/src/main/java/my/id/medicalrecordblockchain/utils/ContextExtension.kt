@@ -139,3 +139,11 @@ fun Context.downloadMedicalRecord(filename: String, url: String?) {
         Toast.makeText(this, "Gagal ekspor rekam medis", Toast.LENGTH_SHORT).show()
     }
 }
+
+fun String.getGender(): String {
+    return if (this == "MALE") {
+        "Laki-laki"
+    } else {
+        "Perempuan"
+    }
+}

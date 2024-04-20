@@ -17,6 +17,7 @@ import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
 import my.id.medicalrecordblockchain.utils.calculateAge
 import my.id.medicalrecordblockchain.utils.downloadMedicalRecord
+import my.id.medicalrecordblockchain.utils.getGender
 
 @AndroidEntryPoint
 class DetailMedicalRecordActivity : AppCompatActivity() {
@@ -118,7 +119,7 @@ class DetailMedicalRecordActivity : AppCompatActivity() {
         binding.tvAge.text = calculateAge(data.dateOfBirth.orEmpty())
         binding.tvWeight.text = "${data.weight} Kg"
         binding.tvHeight.text = "${data.height} Cm"
-        binding.tvGender.text = data.gender
+        binding.tvGender.text = data.gender?.getGender()
         binding.tvAllergic.text = data.allergies
     }
 
