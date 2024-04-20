@@ -1,13 +1,17 @@
 package my.id.medicalrecordblockchain.utils
 
 import android.app.Activity
+import android.app.DownloadManager
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.ContextWrapper
 import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.os.Environment
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
@@ -17,6 +21,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import my.id.medicalrecordblockchain.BuildConfig
 import my.id.medicalrecordblockchain.R
+import java.io.File
 import java.time.LocalDate
 import java.time.Period
 import java.util.Calendar
@@ -116,4 +121,24 @@ fun calculateAge(date: String): String {
         "-"
     }
 
+}
+
+fun Context.downloadImage(filename: String, urlImage: String?) {
+    try {
+        val dm = this.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager?
+        val downloadUri = Uri.parse(urlImage)
+        val request = DownloadManager.Request(downloadUri)
+        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
+            .setAllowedOverRoaming(false)
+            .setTitle(filename)
+            .setMimeType("image/jpeg") // Your file type. You can use this code to download other file types also.
+            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            .setDestinationInExternalPublicDir(
+                Environment.DIRECTORY_DOWNLOADS,
+                File.separator + filename + ".jpg"
+            )
+        dm!!.enqueue(request)
+    } catch (e: Exception) {
+        Toast.makeText(this, "Gagal ekspor rekam medis", Toast.LENGTH_SHORT).show()
+    }
 }

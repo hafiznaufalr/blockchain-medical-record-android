@@ -13,6 +13,7 @@ import my.id.medicalrecordblockchain.databinding.ActivityDetailMedicalRecordBind
 import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
 import my.id.medicalrecordblockchain.utils.calculateAge
+import my.id.medicalrecordblockchain.utils.downloadImage
 
 @AndroidEntryPoint
 class DetailMedicalRecordActivity : AppCompatActivity() {
@@ -38,6 +39,14 @@ class DetailMedicalRecordActivity : AppCompatActivity() {
     private fun initListener() {
         binding.ivBack.setOnClickListener {
             finish()
+        }
+
+        binding.btnAction.setOnClickListener {
+            binding.btnAction.setOnClickListener {
+                viewModel.exportMedicalRecord(
+                    appointmentId = appointmentData?.id.toString()
+                )
+            }
         }
     }
 
@@ -71,6 +80,28 @@ class DetailMedicalRecordActivity : AppCompatActivity() {
                     loadingDialog.dismiss()
                     state.data.data?.let {
                         setupMedicalRecord(it)
+                    }
+                }
+
+                is ResultData.Failure -> {
+                    loadingDialog.dismiss()
+                }
+            }
+        }
+
+        viewModel.exportMedicalRecord.observe(this) { state ->
+            when (state) {
+                is ResultData.Loading -> {
+                    loadingDialog.show()
+                }
+
+                is ResultData.Success -> {
+                    loadingDialog.dismiss()
+                    state.data.data?.let {
+                        downloadImage(
+                            filename = appointmentData?.recordNumber.orEmpty(),
+                            urlImage = it
+                        )
                     }
                 }
 

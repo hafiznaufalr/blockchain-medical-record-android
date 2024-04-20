@@ -6,6 +6,7 @@ import my.id.medicalrecordblockchain.data.requests.UpdateAppointmentRequest
 import my.id.medicalrecordblockchain.data.response.AccountResponse
 import my.id.medicalrecordblockchain.data.response.AppointmentResponse
 import my.id.medicalrecordblockchain.data.response.DetailAppointmentResponse
+import my.id.medicalrecordblockchain.data.response.ExportResponse
 import my.id.medicalrecordblockchain.data.response.SignInResponse
 import my.id.medicalrecordblockchain.utils.ResultData
 
@@ -22,4 +23,5 @@ interface UserRepository {
     ): ResultData<AppointmentResponse>
     suspend fun getAppointmentById(appointmentId: String): ResultData<DetailAppointmentResponse>
     suspend fun updateAppointmentStatus(appointmentId: String, request: UpdateAppointmentRequest): ResultData<DetailAppointmentResponse>
+    suspend fun exportMedicalRecord(appointmentId: String): ResultData<ExportResponse>
 }

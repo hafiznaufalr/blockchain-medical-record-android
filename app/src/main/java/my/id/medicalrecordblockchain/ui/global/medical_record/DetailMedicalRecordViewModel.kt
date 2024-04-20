@@ -7,13 +7,16 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import my.id.medicalrecordblockchain.data.repository.doctor.DoctorRepository
+import my.id.medicalrecordblockchain.data.repository.user.UserRepository
 import my.id.medicalrecordblockchain.data.response.AccountResponse
+import my.id.medicalrecordblockchain.data.response.ExportResponse
 import my.id.medicalrecordblockchain.data.response.MedicalRecordResponse
 import my.id.medicalrecordblockchain.utils.ResultData
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailMedicalRecordViewModel @Inject constructor(
+    private val userRepository: UserRepository,
     private val doctorRepository: DoctorRepository
 ) : ViewModel() {
     private val _medicalRecord = MutableLiveData<ResultData<MedicalRecordResponse>>()
@@ -39,6 +42,20 @@ class DetailMedicalRecordViewModel @Inject constructor(
             _patientById.postValue(
                 doctorRepository.getPatientById(
                     patientId = patientId
+                )
+            )
+        }
+    }
+
+    private val _exportMedicalRecord = MutableLiveData<ResultData<ExportResponse>>()
+    val exportMedicalRecord: LiveData<ResultData<ExportResponse>> = _exportMedicalRecord
+
+    fun exportMedicalRecord(appointmentId: String) {
+        _exportMedicalRecord.value = ResultData.Loading
+        viewModelScope.launch {
+            _exportMedicalRecord.postValue(
+                userRepository.exportMedicalRecord(
+                    appointmentId = appointmentId
                 )
             )
         }

@@ -9,6 +9,7 @@ import my.id.medicalrecordblockchain.data.response.AccountResponse
 import my.id.medicalrecordblockchain.data.response.AppointmentResponse
 import my.id.medicalrecordblockchain.data.response.BasicResponse
 import my.id.medicalrecordblockchain.data.response.DetailAppointmentResponse
+import my.id.medicalrecordblockchain.data.response.ExportResponse
 import my.id.medicalrecordblockchain.data.response.ListDoctorResponse
 import my.id.medicalrecordblockchain.data.response.MedicalRecordResponse
 import my.id.medicalrecordblockchain.data.response.ServicesResponse
@@ -56,7 +57,7 @@ interface APIService {
         @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}"
     ): Response<AccountResponse>
 
-    @GET("/v1/users/{id}")
+    @GET("/v1/users/patient/{id}")
     suspend fun getPatientById(
         @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
         @Path("id") patientId: String
@@ -97,4 +98,10 @@ interface APIService {
         @Path("id") appointmentId: String,
         @Body body: WriteMedicalRecordRequest
     ): Response<BasicResponse>
+
+    @GET("/v1/appointments/{id}")
+    suspend fun exportMedicalRecord(
+        @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
+        @Path("id") appointmentId: String
+    ): Response<ExportResponse>
 }

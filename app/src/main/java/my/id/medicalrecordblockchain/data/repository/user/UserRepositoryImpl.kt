@@ -8,6 +8,7 @@ import my.id.medicalrecordblockchain.data.response.AccountResponse
 import my.id.medicalrecordblockchain.data.response.AppointmentResponse
 import my.id.medicalrecordblockchain.data.response.BasicResponse
 import my.id.medicalrecordblockchain.data.response.DetailAppointmentResponse
+import my.id.medicalrecordblockchain.data.response.ExportResponse
 import my.id.medicalrecordblockchain.data.response.SignInResponse
 import my.id.medicalrecordblockchain.utils.NetworkHandler
 import my.id.medicalrecordblockchain.utils.ResultData
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val apiService: APIService
-): UserRepository {
+) : UserRepository {
     override suspend fun postSignIn(signInRequest: SignInRequest): ResultData<SignInResponse> {
         return NetworkHandler.safeApiCall {
             apiService.postSignIn(signInRequest)
@@ -58,11 +59,22 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun updateAppointmentStatus(appointmentId: String, request: UpdateAppointmentRequest): ResultData<DetailAppointmentResponse> {
+    override suspend fun updateAppointmentStatus(
+        appointmentId: String,
+        request: UpdateAppointmentRequest
+    ): ResultData<DetailAppointmentResponse> {
         return NetworkHandler.safeApiCall {
             apiService.updateAppointmentStatus(
                 id = appointmentId,
                 body = request
+            )
+        }
+    }
+
+    override suspend fun exportMedicalRecord(appointmentId: String): ResultData<ExportResponse> {
+        return NetworkHandler.safeApiCall {
+            apiService.exportMedicalRecord(
+                appointmentId = appointmentId
             )
         }
     }
