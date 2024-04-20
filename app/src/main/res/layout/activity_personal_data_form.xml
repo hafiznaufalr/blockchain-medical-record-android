@@ -159,7 +159,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_logo" />
 
-        <EditText
+        <Spinner
             android:id="@+id/et_gender"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -189,7 +189,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_logo" />
 
-        <EditText
+        <Spinner
             android:id="@+id/et_blood_type"
             android:layout_width="match_parent"
             android:layout_height="40dp"

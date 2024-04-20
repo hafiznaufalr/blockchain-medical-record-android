@@ -54,6 +54,7 @@ class HomeDoctorFragment : Fragment() {
 
     private fun initData() {
         viewModel.getAccount()
+        viewModel.getServices()
     }
 
     private fun observer() {

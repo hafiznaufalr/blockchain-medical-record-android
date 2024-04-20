@@ -44,9 +44,9 @@ class UserRepositoryImpl @Inject constructor(
     ): ResultData<AppointmentResponse> {
         return NetworkHandler.safeApiCall {
             apiService.getListAppointments(
-                scheduleDate = scheduleDate,
-                healthServiceId = healthServiceId,
-                status = status,
+                scheduleDate = scheduleDate.takeIf { !it.isNullOrEmpty() },
+                healthServiceId = healthServiceId.takeIf { !it.isNullOrEmpty() },
+                status = status.takeIf { !it.isNullOrEmpty() },
                 isDoctor = isDoctor,
                 patientId = patientId
             )

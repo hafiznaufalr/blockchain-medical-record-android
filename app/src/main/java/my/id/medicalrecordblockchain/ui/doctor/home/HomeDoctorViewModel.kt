@@ -7,16 +7,19 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import my.id.medicalrecordblockchain.data.Preferences
+import my.id.medicalrecordblockchain.data.repository.patient.PatientRepository
 import my.id.medicalrecordblockchain.data.repository.user.UserRepository
 import my.id.medicalrecordblockchain.data.response.AccountData
 import my.id.medicalrecordblockchain.data.response.AccountResponse
 import my.id.medicalrecordblockchain.data.response.AppointmentResponse
+import my.id.medicalrecordblockchain.data.response.ServicesResponse
 import my.id.medicalrecordblockchain.utils.ResultData
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeDoctorViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val patientRepository: PatientRepository
 ) : ViewModel() {
     private val _appointmentList = MutableLiveData<ResultData<AppointmentResponse>>()
     val appointmentList: LiveData<ResultData<AppointmentResponse>> = _appointmentList
@@ -56,6 +59,20 @@ class HomeDoctorViewModel @Inject constructor(
                 }
             }
             _account.postValue(data)
+        }
+    }
+
+    private val _services = MutableLiveData<ResultData<ServicesResponse>>()
+    val services: LiveData<ResultData<ServicesResponse>> get() = _services
+
+    fun getServices() {
+        _services.value = ResultData.Loading
+        viewModelScope.launch {
+            patientRepository.getServices().also {
+                if (it is ResultData.Success) {
+                    Preferences.storeServices(it.data.data)
+                }
+            }
         }
     }
 }

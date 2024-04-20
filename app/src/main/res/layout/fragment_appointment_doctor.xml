@@ -41,6 +41,18 @@
         app:layout_constraintTop_toTopOf="@id/tv_sub_title"
         app:srcCompat="@drawable/ic_filter" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/fregular"
+        android:text="Reset"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/iv_filter"
+        app:layout_constraintEnd_toStartOf="@id/iv_filter"
+        app:layout_constraintTop_toTopOf="@id/iv_filter" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_appointment"
         android:layout_width="match_parent"

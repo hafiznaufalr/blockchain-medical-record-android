@@ -20,13 +20,15 @@ class MedicalRecordHistoryViewModel @Inject constructor(
     private val _appointmentList = MutableLiveData<ResultData<AppointmentResponse>>()
     val appointmentList: LiveData<ResultData<AppointmentResponse>> = _appointmentList
 
-    fun getAppointmentList() {
+    fun getAppointmentList(date: String? = null, service: String? = null) {
         _appointmentList.value = ResultData.Loading
         viewModelScope.launch {
             _appointmentList.postValue(
                 userRepository.getAppointmentPatient(
                     status = "DONE",
-                    isDoctor = true
+                    isDoctor = true,
+                    scheduleDate = date,
+                    healthServiceId = service
                 )
             )
         }
