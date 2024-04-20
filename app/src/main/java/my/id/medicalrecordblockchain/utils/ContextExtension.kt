@@ -9,6 +9,7 @@ import android.content.ContextWrapper
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Environment
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -17,13 +18,9 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import my.id.medicalrecordblockchain.BuildConfig
 import my.id.medicalrecordblockchain.R
 import java.io.File
-import java.time.LocalDate
-import java.time.Period
 import java.util.Calendar
 import kotlin.math.roundToInt
 
@@ -123,19 +120,19 @@ fun calculateAge(date: String): String {
 
 }
 
-fun Context.downloadImage(filename: String, urlImage: String?) {
+fun Context.downloadMedicalRecord(filename: String, url: String?) {
     try {
         val dm = this.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager?
-        val downloadUri = Uri.parse(urlImage)
+        val downloadUri = Uri.parse(url)
         val request = DownloadManager.Request(downloadUri)
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
             .setAllowedOverRoaming(false)
             .setTitle(filename)
-            .setMimeType("image/jpeg") // Your file type. You can use this code to download other file types also.
+            .setMimeType("application/pdf")
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             .setDestinationInExternalPublicDir(
                 Environment.DIRECTORY_DOWNLOADS,
-                File.separator + filename + ".jpg"
+                File.separator + filename + ".pdf"
             )
         dm!!.enqueue(request)
     } catch (e: Exception) {

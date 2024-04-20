@@ -99,7 +99,7 @@ interface APIService {
         @Body body: WriteMedicalRecordRequest
     ): Response<BasicResponse>
 
-    @GET("/v1/appointments/{id}")
+    @GET("/v1/appointments/export/{id}")
     suspend fun exportMedicalRecord(
         @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
         @Path("id") appointmentId: String

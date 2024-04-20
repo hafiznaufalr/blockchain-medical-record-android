@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
+import my.id.medicalrecordblockchain.BuildConfig
 import my.id.medicalrecordblockchain.data.response.AccountData
 import my.id.medicalrecordblockchain.data.response.AppointmentData
 import my.id.medicalrecordblockchain.data.response.MedicalRecordData
@@ -13,7 +14,7 @@ import my.id.medicalrecordblockchain.databinding.ActivityDetailMedicalRecordBind
 import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
 import my.id.medicalrecordblockchain.utils.calculateAge
-import my.id.medicalrecordblockchain.utils.downloadImage
+import my.id.medicalrecordblockchain.utils.downloadMedicalRecord
 
 @AndroidEntryPoint
 class DetailMedicalRecordActivity : AppCompatActivity() {
@@ -21,6 +22,7 @@ class DetailMedicalRecordActivity : AppCompatActivity() {
     private val loadingDialog by lazy { LoadingDialog(this) }
     private val viewModel: DetailMedicalRecordViewModel by viewModels()
     private var appointmentData: AppointmentData? = null
+    private var medicalRecordData: MedicalRecordData? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailMedicalRecordBinding.inflate(layoutInflater)
@@ -42,11 +44,9 @@ class DetailMedicalRecordActivity : AppCompatActivity() {
         }
 
         binding.btnAction.setOnClickListener {
-            binding.btnAction.setOnClickListener {
-                viewModel.exportMedicalRecord(
-                    appointmentId = appointmentData?.id.toString()
-                )
-            }
+            viewModel.exportMedicalRecord(
+                appointmentId = appointmentData?.id.toString()
+            )
         }
     }
 
@@ -98,9 +98,9 @@ class DetailMedicalRecordActivity : AppCompatActivity() {
                 is ResultData.Success -> {
                     loadingDialog.dismiss()
                     state.data.data?.let {
-                        downloadImage(
-                            filename = appointmentData?.recordNumber.orEmpty(),
-                            urlImage = it
+                        downloadMedicalRecord(
+                            filename = medicalRecordData?.medicalRecordNumber.orEmpty(),
+                            url = BuildConfig.BASE_URL + it
                         )
                     }
                 }
@@ -121,6 +121,7 @@ class DetailMedicalRecordActivity : AppCompatActivity() {
     }
 
     private fun setupMedicalRecord(data: MedicalRecordData) {
+        medicalRecordData = data
         binding.tvMedicalRecordId.text = data.medicalRecordNumber
         binding.tvWrittenDate.text = data.createdAt
         binding.tvDoctor.text = appointmentData?.doctorName
