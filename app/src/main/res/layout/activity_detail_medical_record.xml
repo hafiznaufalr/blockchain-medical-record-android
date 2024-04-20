@@ -259,6 +259,15 @@
                 android:textColor="#828282"
                 android:textSize="14sp" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/fsemibold"
+                android:text="Dokumen Pendukung:"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_upload"
                 android:layout_width="match_parent"

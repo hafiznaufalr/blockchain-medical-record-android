@@ -20,7 +20,11 @@ class MedicalRecordHistoryAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            ItemMedicalRecordHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemMedicalRecordHistoryBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         return ViewHolder(binding).apply {
             binding.root.setOnClickListener {
                 onItemClickListener.invoke(listAppointments[adapterPosition])
@@ -37,7 +41,8 @@ class MedicalRecordHistoryAdapter(
     inner class ViewHolder(private val binding: ItemMedicalRecordHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindItem(item: AppointmentData) {
-            binding.tvHealthService.text = item.healthServiceName
+            binding.tvDiagnose.text = item.diagnose?.uppercase() ?: "Flu"
+            binding.tvDoctorType.text = item.healthServiceName
             binding.tvDoctorName.text = item.doctorName
             binding.tvAppointmentDate.text = item.scheduleDate
         }

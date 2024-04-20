@@ -120,6 +120,18 @@ fun calculateAge(date: String): String {
 
 }
 
+fun String.formatDate(): String {
+    return try {
+        val parentSplitter = this.split('T')
+        val splitter = parentSplitter[0].split('-')
+
+        "${splitter[2]}-${splitter[1]}-${splitter[0]}"
+    } catch (exception: Exception) {
+        "-"
+    }
+
+}
+
 fun Context.downloadMedicalRecord(filename: String, url: String?) {
     try {
         val dm = this.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager?

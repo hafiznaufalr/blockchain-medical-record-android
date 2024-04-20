@@ -17,6 +17,7 @@ import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
 import my.id.medicalrecordblockchain.utils.calculateAge
 import my.id.medicalrecordblockchain.utils.downloadMedicalRecord
+import my.id.medicalrecordblockchain.utils.formatDate
 import my.id.medicalrecordblockchain.utils.getGender
 
 @AndroidEntryPoint
@@ -126,7 +127,7 @@ class DetailMedicalRecordActivity : AppCompatActivity() {
     private fun setupMedicalRecord(data: MedicalRecordData) {
         medicalRecordData = data
         binding.tvMedicalRecordId.text = data.medicalRecordNumber
-        binding.tvWrittenDate.text = data.createdAt
+        binding.tvWrittenDate.text = data.createdAt?.formatDate()
         binding.tvDoctor.text = appointmentData?.doctorName
         binding.tvSymptoms.text = appointmentData?.symptoms
         binding.tvDisease.text = data.diagnose

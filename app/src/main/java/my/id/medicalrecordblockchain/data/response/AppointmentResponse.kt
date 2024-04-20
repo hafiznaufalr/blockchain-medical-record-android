@@ -29,6 +29,8 @@ data class AppointmentData(
     val bookingAt: String?,
     @SerializedName("doctor_id")
     val doctorId: Int?,
+    @SerializedName("diagnose")
+    val diagnose: String?,
     @SerializedName("doctor_name")
     val doctorName: String?,
     @SerializedName("health_service_id")

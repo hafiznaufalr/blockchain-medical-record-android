@@ -14,6 +14,7 @@ import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
 import my.id.medicalrecordblockchain.utils.SnackBarType
 import my.id.medicalrecordblockchain.utils.decideActionByFlavor
+import my.id.medicalrecordblockchain.utils.formatDate
 import my.id.medicalrecordblockchain.utils.gone
 import my.id.medicalrecordblockchain.utils.showSnackBar
 import my.id.medicalrecordblockchain.utils.visible
@@ -209,7 +210,7 @@ class DetailAppointmentActivity : AppCompatActivity() {
 
     private fun setupDetailAppointment(data: AppointmentData) {
         binding.tvBookingId.text = data.recordNumber
-        binding.tvBookingDate.text = data.bookingAt
+        binding.tvBookingDate.text = data.bookingAt?.formatDate()
         binding.tvStatus.text = data.status
         binding.tvAppointmentDate.text = "${data.scheduleDate} - ${data.scheduleTime}"
         binding.tvSymptoms.text = data.symptoms

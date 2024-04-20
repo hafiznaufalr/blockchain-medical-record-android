@@ -26,7 +26,11 @@ class HomePatientViewModel @Inject constructor(
     fun getServices() {
         _services.value = ResultData.Loading
         viewModelScope.launch {
-            _services.postValue(patientRepository.getServices())
+            _services.postValue(patientRepository.getServices().also {
+                if (it is ResultData.Success) {
+                    Preferences.storeServices(it.data.data)
+                }
+            })
         }
     }
 
