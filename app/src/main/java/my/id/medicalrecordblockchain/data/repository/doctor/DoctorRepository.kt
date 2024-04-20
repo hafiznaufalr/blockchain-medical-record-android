@@ -5,9 +5,11 @@ import my.id.medicalrecordblockchain.data.response.AccountResponse
 import my.id.medicalrecordblockchain.data.response.BasicResponse
 import my.id.medicalrecordblockchain.data.response.MedicalRecordResponse
 import my.id.medicalrecordblockchain.utils.ResultData
+import okhttp3.MultipartBody
 
 interface DoctorRepository {
     suspend fun getMedicalRecordById(appointmentId: String): ResultData<MedicalRecordResponse>
     suspend fun writeMedicalRecord(appointmentId: String, body: WriteMedicalRecordRequest): ResultData<BasicResponse>
     suspend fun getPatientById(patientId: String): ResultData<AccountResponse>
+    suspend fun postImage(file: MultipartBody.Part): ResultData<BasicResponse>
 }

@@ -258,6 +258,16 @@
                 android:text="-"
                 android:textColor="#828282"
                 android:textSize="14sp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_upload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="#BDBDBD"
+                android:visibility="gone"
+                android:minHeight="150dp"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize16dp" />
         </LinearLayout>
 
     </ScrollView>

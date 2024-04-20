@@ -15,5 +15,7 @@ data class BasicResponse(
 @Parcelize
 data class BasicData(
     @SerializedName("id")
-    val id: Int?
+    val id: Int?,
+    @SerializedName("path")
+    val path: String?
 ) : Parcelable

@@ -7,6 +7,7 @@ import my.id.medicalrecordblockchain.data.response.BasicResponse
 import my.id.medicalrecordblockchain.data.response.MedicalRecordResponse
 import my.id.medicalrecordblockchain.utils.NetworkHandler
 import my.id.medicalrecordblockchain.utils.ResultData
+import okhttp3.MultipartBody
 import java.lang.IllegalStateException
 import javax.inject.Inject
 
@@ -38,6 +39,14 @@ class DoctorRepositoryImpl @Inject constructor(
         return NetworkHandler.safeApiCall {
             apiService.getPatientById(
                 patientId = patientId
+            )
+        }
+    }
+
+    override suspend fun postImage(file: MultipartBody.Part): ResultData<BasicResponse> {
+        return NetworkHandler.safeApiCall {
+            apiService.postImage(
+                file = file
             )
         }
     }

@@ -12,6 +12,7 @@ import my.id.medicalrecordblockchain.data.requests.WriteMedicalRecordRequest
 import my.id.medicalrecordblockchain.data.response.BasicResponse
 import my.id.medicalrecordblockchain.data.response.SignInResponse
 import my.id.medicalrecordblockchain.utils.ResultData
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 @HiltViewModel
@@ -44,6 +45,20 @@ class WriteMedicalRecordViewModel @Inject constructor(
                 doctorRepository.writeMedicalRecord(
                     appointmentId = appointmentId,
                     body = request
+                )
+            )
+        }
+    }
+
+    private val _postFile = MutableLiveData<ResultData<BasicResponse>>()
+    val postFile: LiveData<ResultData<BasicResponse>> get() = _postFile
+
+    fun uploadFile(file: MultipartBody.Part) {
+        _postFile.value = ResultData.Loading
+        viewModelScope.launch {
+            _postFile.postValue(
+                doctorRepository.postImage(
+                    file = file
                 )
             )
         }

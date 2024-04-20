@@ -14,13 +14,16 @@ import my.id.medicalrecordblockchain.data.response.ListDoctorResponse
 import my.id.medicalrecordblockchain.data.response.MedicalRecordResponse
 import my.id.medicalrecordblockchain.data.response.ServicesResponse
 import my.id.medicalrecordblockchain.data.response.SignInResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -104,4 +107,11 @@ interface APIService {
         @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
         @Path("id") appointmentId: String
     ): Response<ExportResponse>
+
+    @Multipart
+    @POST("/v1/appointments/upload")
+    suspend fun postImage(
+        @Header("Authorization") token: String = "Bearer ${Preferences.getToken()}",
+        @Part file: MultipartBody.Part
+    ): Response<BasicResponse>
 }

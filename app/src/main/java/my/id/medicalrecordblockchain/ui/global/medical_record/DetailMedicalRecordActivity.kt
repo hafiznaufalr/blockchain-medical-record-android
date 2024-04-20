@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import my.id.medicalrecordblockchain.BuildConfig
 import my.id.medicalrecordblockchain.data.response.AccountData
@@ -129,6 +131,13 @@ class DetailMedicalRecordActivity : AppCompatActivity() {
         binding.tvDisease.text = data.diagnose
         binding.tvNotes.text = data.notes
         binding.tvPrescriptions.text = data.prescription
+
+        if (!data.additionalDocumentPath.orEmpty().contains("jpg")) return
+        binding.ivUpload.isVisible = true
+        Glide
+            .with(binding.ivUpload.context)
+            .load(BuildConfig.BASE_URL + data.additionalDocumentPath)
+            .into(binding.ivUpload)
     }
 
     companion object {
