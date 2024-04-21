@@ -47,6 +47,7 @@
             android:layout_marginTop="8dp"
             android:autofillHints="@null"
             android:background="@drawable/bg_edit_text_inactive"
+            android:focusable="false"
             android:fontFamily="@font/fregular"
             android:hint="Masukkan tanggal yang valid"
             android:inputType="date"

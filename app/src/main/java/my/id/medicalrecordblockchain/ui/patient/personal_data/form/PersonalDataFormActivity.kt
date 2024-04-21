@@ -5,12 +5,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import dagger.hilt.android.AndroidEntryPoint
+import my.id.medicalrecordblockchain.R
 import my.id.medicalrecordblockchain.data.requests.SignUpRequest
 import my.id.medicalrecordblockchain.databinding.ActivityPersonalDataFormBinding
 import my.id.medicalrecordblockchain.ui.global.sign_in.SignInActivity
@@ -19,9 +23,10 @@ import my.id.medicalrecordblockchain.utils.LoadingDialog
 import my.id.medicalrecordblockchain.utils.ResultData
 import my.id.medicalrecordblockchain.utils.SnackBarType
 import my.id.medicalrecordblockchain.utils.showSnackBar
+import java.util.Calendar
 
 @AndroidEntryPoint
-class PersonalDataFormActivity : AppCompatActivity() {
+class PersonalDataFormActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     private lateinit var binding: ActivityPersonalDataFormBinding
     private lateinit var signUpRequest: SignUpRequest
     private val signUpViewModel: SignUpViewModel by viewModels()
@@ -38,6 +43,7 @@ class PersonalDataFormActivity : AppCompatActivity() {
         Pair("MALE", "Laki-laki"),
         Pair("FEMALE", "Perempuan")
     )
+    private var datePickerDialog: DatePickerDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,6 +102,10 @@ class PersonalDataFormActivity : AppCompatActivity() {
     }
 
     private fun initListener() {
+        binding.etDob.setOnClickListener {
+            showDatePicker()
+        }
+
         binding.btnSignUp.setOnClickListener {
             signUpViewModel.validatePersonalData(
                 signUpRequest = signUpRequest.copy(
@@ -108,6 +118,22 @@ class PersonalDataFormActivity : AppCompatActivity() {
                 )
             )
         }
+    }
+
+    private fun showDatePicker() {
+        val now = Calendar.getInstance()
+        datePickerDialog = DatePickerDialog.newInstance(
+            this, now[Calendar.YEAR], now[Calendar.MONTH], now[Calendar.DAY_OF_MONTH]
+        )
+
+        datePickerDialog?.maxDate = Calendar.getInstance()
+        datePickerDialog?.version = DatePickerDialog.Version.VERSION_2
+        datePickerDialog?.accentColor =
+            ContextCompat.getColor(this, R.color.primary)
+        datePickerDialog?.setOnCancelListener {
+            Log.d("DatePickerDialog", "Dialog was cancelled")
+        }
+        datePickerDialog?.show(supportFragmentManager, "date picker onboarding")
     }
 
     private fun observer() {
@@ -143,6 +169,16 @@ class PersonalDataFormActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
+        val month = monthOfYear + 1
+
+        val updatedDay = dayOfMonth.toString().padStart(2, '0')
+        val updatedMonth = month.toString().padStart(2, '0')
+
+        binding.etDob.setText("${year}-${updatedMonth}-${updatedDay}")
+    }
+
 
     companion object {
         private const val KEY_SIGN_UP_REQ = "KEY_SIGN_UP_REQ"

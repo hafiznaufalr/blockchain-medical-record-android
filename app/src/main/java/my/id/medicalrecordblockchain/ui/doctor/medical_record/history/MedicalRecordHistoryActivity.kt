@@ -14,6 +14,8 @@ import my.id.medicalrecordblockchain.ui.global.filter.FilterMedicalBottomSheet
 import my.id.medicalrecordblockchain.ui.global.filter.FilterMedicalCallBack
 import my.id.medicalrecordblockchain.ui.global.medical_record.DetailMedicalRecordActivity
 import my.id.medicalrecordblockchain.utils.ResultData
+import my.id.medicalrecordblockchain.utils.SnackBarType
+import my.id.medicalrecordblockchain.utils.showSnackBar
 
 @AndroidEntryPoint
 class MedicalRecordHistoryActivity : AppCompatActivity(), FilterMedicalCallBack {
@@ -54,14 +56,20 @@ class MedicalRecordHistoryActivity : AppCompatActivity(), FilterMedicalCallBack 
 
     override fun onResume() {
         super.onResume()
-        viewModel.getAppointmentList()
+        viewModel.getAppointmentList(
+            patientId = appointmentData?.patientId.toString(),
+            appointmentId = appointmentData?.id.toString()
+        )
     }
 
     private fun initListener() {
         binding.tvReset.setOnClickListener {
             binding.tvReset.isVisible = false
             setupFilterBottomSheet()
-            viewModel.getAppointmentList()
+            viewModel.getAppointmentList(
+                patientId = appointmentData?.patientId.toString(),
+                appointmentId = appointmentData?.id.toString()
+            )
         }
 
         binding.ivFilter.setOnClickListener {
@@ -95,11 +103,16 @@ class MedicalRecordHistoryActivity : AppCompatActivity(), FilterMedicalCallBack 
                 }
 
                 is ResultData.Success -> {
+                    binding.flButton.isVisible = true
                     adapter.setData(state.data.data)
                 }
 
                 is ResultData.Failure -> {
                     adapter.setData(emptyList())
+                    showSnackBar(
+                        message = state.error,
+                        snackBarType = SnackBarType.ERROR
+                    )
                 }
             }
         }
@@ -123,7 +136,9 @@ class MedicalRecordHistoryActivity : AppCompatActivity(), FilterMedicalCallBack 
         binding.tvReset.isVisible = !date.isNullOrEmpty() || service != 0
         viewModel.getAppointmentList(
             date = date,
-            service = service.toString()
+            service = service.toString(),
+            patientId = appointmentData?.patientId.toString(),
+            appointmentId = appointmentData?.id.toString()
         )
     }
 }

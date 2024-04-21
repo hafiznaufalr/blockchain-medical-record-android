@@ -40,7 +40,8 @@ class UserRepositoryImpl @Inject constructor(
         healthServiceId: String?,
         status: String?,
         isDoctor: Boolean?,
-        patientId: String?
+        patientId: String?,
+        appointmentId: String?
     ): ResultData<AppointmentResponse> {
         return NetworkHandler.safeApiCall {
             apiService.getListAppointments(
@@ -48,7 +49,8 @@ class UserRepositoryImpl @Inject constructor(
                 healthServiceId = healthServiceId.takeIf { !it.isNullOrEmpty() },
                 status = status.takeIf { !it.isNullOrEmpty() },
                 isDoctor = isDoctor,
-                patientId = patientId
+                patientId = patientId,
+                appointmentId = appointmentId
             )
         }
     }

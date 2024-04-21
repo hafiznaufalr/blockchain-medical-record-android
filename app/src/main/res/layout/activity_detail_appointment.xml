@@ -192,7 +192,7 @@
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:textAllCaps="false"
-                android:textColor="@color/black"
+                android:textColor="@color/primary"
                 app:cornerRadius="100dp"
                 app:strokeColor="@color/primary"
                 app:strokeWidth="1dp" />

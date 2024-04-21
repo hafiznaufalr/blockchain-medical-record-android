@@ -135,6 +135,7 @@ class DetailMedicalRecordActivity : AppCompatActivity() {
         binding.tvPrescriptions.text = data.prescription
 
         if (!data.additionalDocumentPath.orEmpty().contains("jpg")) return
+        binding.tvLabelAdditionalDoc.isVisible = true
         binding.ivUpload.isVisible = true
         Glide
             .with(binding.ivUpload.context)

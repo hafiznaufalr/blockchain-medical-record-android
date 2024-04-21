@@ -73,7 +73,8 @@ interface APIService {
         @Query("health_service_id") healthServiceId: String? = null,
         @Query("status") status: String? = null,
         @Query("is_doctor") isDoctor: Boolean? = null,
-        @Query("patient_id") patientId: String? = null
+        @Query("patient_id") patientId: String? = null,
+        @Query("appointment_id") appointmentId: String? = null
     ): Response<AppointmentResponse>
 
     @GET("/v1/appointments/details/{id}")
